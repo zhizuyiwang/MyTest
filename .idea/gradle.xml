@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="DEFAULT_WRAPPED" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/AndroidTest" />
+            <option value="$PROJECT_DIR$/MyAlarm" />
+            <option value="$PROJECT_DIR$/MyMusic" />
+            <option value="$PROJECT_DIR$/MyMusicPlayer" />
+            <option value="$PROJECT_DIR$/MyPayAnimation" />
+            <option value="$PROJECT_DIR$/PullToRefresh" />
+            <option value="$PROJECT_DIR$/Titanic" />
+            <option value="$PROJECT_DIR$/library" />
+            <option value="$PROJECT_DIR$/test" />
+            <option value="$PROJECT_DIR$/属性动画大全" />
+          </set>
+        </option>
+        <option name="myModules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/AndroidTest" />
+            <option value="$PROJECT_DIR$/MyAlarm" />
+            <option value="$PROJECT_DIR$/MyMusic" />
+            <option value="$PROJECT_DIR$/MyMusicPlayer" />
+            <option value="$PROJECT_DIR$/MyPayAnimation" />
+            <option value="$PROJECT_DIR$/PullToRefresh" />
+            <option value="$PROJECT_DIR$/Titanic" />
+            <option value="$PROJECT_DIR$/library" />
+            <option value="$PROJECT_DIR$/test" />
+            <option value="$PROJECT_DIR$/属性动画大全" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

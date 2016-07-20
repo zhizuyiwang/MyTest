@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AndroidTest/AndroidTest.iml" filepath="$PROJECT_DIR$/AndroidTest/AndroidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyAlarm/MyAlarm.iml" filepath="$PROJECT_DIR$/MyAlarm/MyAlarm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyMusic/MyMusic.iml" filepath="$PROJECT_DIR$/MyMusic/MyMusic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyMusicPlayer/MyMusicPlayer.iml" filepath="$PROJECT_DIR$/MyMusicPlayer/MyMusicPlayer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyPayAnimation/MyPayAnimation.iml" filepath="$PROJECT_DIR$/MyPayAnimation/MyPayAnimation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MyTest.iml" filepath="$PROJECT_DIR$/MyTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PullToRefresh/PullToRefresh.iml" filepath="$PROJECT_DIR$/PullToRefresh/PullToRefresh.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Titanic/Titanic.iml" filepath="$PROJECT_DIR$/Titanic/Titanic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/test/test.iml" filepath="$PROJECT_DIR$/test/test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/属性动画大全/属性动画大全.iml" filepath="$PROJECT_DIR$/属性动画大全/属性动画大全.iml" />
+    </modules>
+  </component>
+</project>

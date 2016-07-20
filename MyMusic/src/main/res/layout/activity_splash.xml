@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0099cc"
+    tools:context="com.hsf.music.activity.SplashActivity">
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:keepScreenOn="true"
+        android:background="@mipmap/app_splash_bg"
+        android:textColor="#33b5e5"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        android:shadowColor="#000000"
+        android:shadowDx="15.0"
+        android:shadowDy="5.0"
+        android:shadowRadius="5.0"
+        android:text="音乐播放"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorBlack"
+        android:layout_alignParentBottom="true">
+        <Button
+            android:id="@+id/btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="#616261"
+            android:text="点击进入"
+            android:textSize="15sp"
+            android:textColor="@color/colorRed"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
