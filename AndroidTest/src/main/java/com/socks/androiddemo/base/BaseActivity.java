@@ -12,6 +12,7 @@ public class BaseActivity extends AppCompatActivity implements Initialable {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		context = this;
+
 	}
 
 	@Override
