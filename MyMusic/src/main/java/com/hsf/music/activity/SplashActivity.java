@@ -96,9 +96,12 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //隐藏标题栏，即应用程序的名字
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //requestWindowFeature(Window.FEATURE_NO_TITLE);
         //隐藏状态栏、电量栏、信号等
         //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        if (getSupportActionBar() != null){
+            getSupportActionBar().hide();
+        }
         setContentView(R.layout.activity_splash);
         initDate();
         initView();
@@ -133,9 +136,9 @@ public class SplashActivity extends AppCompatActivity {
         tv.setText(Html.fromHtml(text1+text2+text3+text4));
         //在xml设置阴影
         //android:shadowColor="#000000"
-        //android:shadowDx="15.0"
-        //android:shadowDy="5.0"
-        //android:shadowRadius=“5.0"
+        //android:shadowDx="music15.0"
+        //android:shadowDy="music5.0"
+        //android:shadowRadius=“music5.0"
 
         btn = (Button) findViewById(R.id.btn);
         btn.setOnClickListener(new View.OnClickListener() {
