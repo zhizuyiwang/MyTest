@@ -3,6 +3,40 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical" >
+    <RelativeLayout
+        style="@style/color_title"
+        android:layout_width="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_height="50dp" >
+        <TextView
+            android:id="@+id/tv_status1"
+            android:layout_width="100dp"
+            android:layout_marginLeft="5dp"
+            android:layout_height="match_parent"
+            style="@style/text_title_activity"
+            android:gravity="center_vertical"
+            android:text="正在播放："/>
+        <TextView
+            android:id="@+id/tv_status2"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/tv_status1"
+            style="@style/text_title_activity"
+            android:gravity="center_vertical"/>
+        <Button
+            android:id="@+id/change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/btn_select"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical"
+            android:text="切换主题"/>
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/tv_status"

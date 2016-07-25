@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button previous;
     private SeekBar progress;
     private LinearLayout ll;
+    private Button change;
     private boolean isrun = false;//是否正在播放,默认是没有播放
     private boolean isPause;//是否暂停
     private boolean isAuto = false;
@@ -72,6 +73,60 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initView();
         initData();
         playMusic(currentPosition);
+        showTheme(currentPosition);
+    }
+
+    private void showTheme(int currentPosition) {
+        if(currentPosition==0){
+
+
+        }
+        if(currentPosition==1){
+
+        }
+        if(currentPosition==2){
+
+        }
+        if(currentPosition==3){
+
+        }
+        if(currentPosition==4){
+
+        }
+        if(currentPosition==5){
+
+        }
+        if(currentPosition==6){
+
+        }
+        if(currentPosition==7){
+
+        }
+        if(currentPosition==8){
+
+        }
+        if(currentPosition==9){
+
+        }
+        if(currentPosition==10){
+
+        }
+        if(currentPosition==11){
+
+        }
+        if(currentPosition==12){
+
+        }
+        if(currentPosition==13){
+
+        }
+        if(currentPosition==14){
+
+        }
+
+
+
+
 
     }
 
@@ -110,6 +165,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         progress = (SeekBar) findViewById(R.id.progress);
         ll = (LinearLayout) findViewById(R.id.ll);
         ll.setBackgroundResource(R.color.colorAccent);
+        change = (Button) findViewById(R.id.change);
+        change.setOnClickListener(this);
         progress.setVisibility(View.GONE);
         progress.setOnClickListener(this);
         progress.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -199,7 +256,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.next://下一首
 
                 nextPlay();
-
+                break;
+            case R.id.change://切换主题
+                currentPosition = random.nextInt(15);
+                showTheme(currentPosition);//展示主题
+                playMusic(currentPosition);//播放音乐
                 break;
         }
 
@@ -263,6 +324,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         playMusic(currentPosition);
+        showTheme(currentPosition);
 
     }
 
