@@ -4,6 +4,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="55dp"
                 android:layout_alignParentBottom="true"
+                android:background="@drawable/bottom_bar"
                  >
 
     <LinearLayout
@@ -24,9 +25,8 @@
                 android:id="@+id/btn_tab_bottom_weixin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#0000"
+                android:background="@mipmap/tab_weixin_pressed"
                 android:clickable="false"
-            android:src="@mipmap/tab_weixin_pressed"
                 />
 
 
@@ -51,9 +51,8 @@
                 android:id="@+id/btn_tab_bottom_friend"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#0000"
+                android:background="@mipmap/tab_find_frd_normal"
                 android:clickable="false"
-             android:src="@mipmap/tab_find_frd_normal"
                />
 
             <TextView
@@ -77,9 +76,8 @@
                 android:id="@+id/btn_tab_bottom_contact"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#0000"
+                android:background="@mipmap/tab_address_normal"
                 android:clickable="false"
-             android:src="@mipmap/tab_address_normal"
                />
 
 
@@ -104,9 +102,8 @@
                 android:id="@+id/btn_tab_bottom_setting"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#0000"
+                android:background="@mipmap/tab_settings_normal"
                 android:clickable="false"
-            android:src="@mipmap/tab_settings_normal"
                 />
 
             <TextView

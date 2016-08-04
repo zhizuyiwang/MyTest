@@ -1,0 +1,39 @@
+遇到了以下问题
+1、出现了R文件缺失，经过多次测试，发现了问题，是.9图的问题
+在这里总结下9图的用法：首先，在android studio中，9图必须放到drawable文件夹中才能被识别
+其次，可以把9图放到drawable文件夹中双击打开就可以可以编辑9图，最后，从其他地方复制到studio的
+9图有可能studio并不能识别，需要在studio中编辑下保存才能识别。从这里得出了R文件丢失的原因。
+当R文件丢失后，一定是res文件夹里的东西出毛病了，无疑有两种情况：
+    第一种、是资源文件名写错，资源文件名称必须是小写字母，不能有大写字母，并且特殊符号也不能用，此资源文件名包括
+    .xml文件的名和图片的名称
+    第二种、xml文件里的内容有错误，可能在写id时加了个空格，或引用资源时出错
+2、再次确认了drawable文件夹和mipmap文件夹的区别：
+    drawable文件夹中存放这XML等文件，如选择器，并且选择器需要的图片资源也要放到drawable文件夹中。
+    其他的情况应该放到mipmap文件夹中，因为可以自动缩放优化内存，从本demo中就可以看出，在底部的四个按钮中，用drawable文件夹中
+    的图片明显偏大，用mipmap中的图片就可以很好的适配
+
+3、还要注意，在布局中给ImageView设置图片时若用src属性，在代码中则用setImageResource（）。
+           若在布局中使用background属性，在代码中则使用setBackgroundResource（）。否则会出现重叠现象
+
+4、Android中设置文本颜色的三种方法
+    第一种、利用系统自带的颜色类
+        TextView1.setTextColor(android.graphics.Color.RED);
+    第二种、数字颜色表示法
+        TextView1.setTextColor(0xffff00ff);
+    第三种、自定义颜色,需要在color.xml中定义颜色
+        TextView1.setTextColor(this.getResources().getColor(R.color.red));
+
+5、在使用fragment的时候发现了个问题，就是在
+    View view = inflater.inflate(R.layout.fragment1_activity,container,false);中，若最后一个参数不写，
+    则会报 java.lang.IllegalStateException:
+    The specified child already has a parent. You must call removeView() on the child's parent first.
+    异常，经过查资料，得到了一些结论：
+
+    即inflate(int resource, ViewGroup root, boolean attachToRoot)，如果root不为空，attachToRoot为false的
+    情况下，文档说的很明白：If false, root is only used to create the correct subclass of LayoutParams
+    for the root view in the XML，即root只用来创建母布局的参数信息。而为true，则添加到母布局。因为我们控制fragment时要手动add，
+    所以此处attachToRoot一定是false。
+
+    再反过来看，如果root一定要传null，此时子view不会得到母view的布局信息，子view里一堆的match_parent也就毫无用途。
+
+    总结：90%的情况下，我们使用fragment此处一定要用方法1. 有一种情况，如创建dialog fragment时，不需要得到母布局参数信息可以用方法2.

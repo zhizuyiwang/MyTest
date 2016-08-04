@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.hsf.tab.R;
+
 import java.util.ArrayList;
 
 /**
@@ -37,7 +39,7 @@ public class TabActivity1 extends AppCompatActivity implements View.OnClickListe
     /**
      * 底部四个TextView
      */
-    private TextView mTvWenxin;
+    private TextView mTvWeixin;
     private TextView mTvFrd;
     private TextView mTvAddress;
     private TextView mTvSetting;
@@ -59,6 +61,9 @@ public class TabActivity1 extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().hide();
+        }
         setContentView(R.layout.activity_tab1);
         inflater = LayoutInflater.from(this);
 
@@ -79,19 +84,19 @@ public class TabActivity1 extends AppCompatActivity implements View.OnClickListe
                 resetButoon();
                 switch (position){
                     case 0:
-                        mImaWenxin.setBackgroundResource(R.drawable.tab_weixin_pressed);
-                        mTvWenxin.setTextColor(getResources().getColor(R.color.green));
+                        mImaWenxin.setBackgroundResource(R.mipmap.tab_weixin_pressed);
+                        mTvWeixin.setTextColor(getResources().getColor(R.color.green));
                         break;
                     case 1:
                         mImaFrd.setBackgroundResource(R.mipmap.tab_find_frd_pressed);
                         mTvFrd.setTextColor(getResources().getColor(R.color.green));
                         break;
                     case 2:
-                        mImaAddress.setBackgroundResource(R.drawable.tab_address_pressed);
+                        mImaAddress.setBackgroundResource(R.mipmap.tab_address_pressed);
                         mTvAddress.setTextColor(getResources().getColor(R.color.green));
                         break;
                     case 3:
-                        mImaSetting.setBackgroundResource(R.drawable.tab_settings_pressed);
+                        mImaSetting.setBackgroundResource(R.mipmap.tab_settings_pressed);
                         mTvSetting.setTextColor(getResources().getColor(R.color.green));
                         break;
                 }
@@ -108,12 +113,12 @@ public class TabActivity1 extends AppCompatActivity implements View.OnClickListe
 
     private void resetButoon() {
 
-        mImaWenxin.setBackgroundResource(R.drawable.tab_weixin_normal);
+        mImaWenxin.setBackgroundResource(R.mipmap.tab_weixin_normal);
         mImaFrd.setBackgroundResource(R.mipmap.tab_find_frd_normal);
-        mImaAddress.setBackgroundResource(R.drawable.tab_address_normal);
-        mImaSetting.setBackgroundResource(R.drawable.tab_settings_normal);
+        mImaAddress.setBackgroundResource(R.mipmap.tab_address_normal);
+        mImaSetting.setBackgroundResource(R.mipmap.tab_settings_normal);
 
-        mTvWenxin.setTextColor(getResources().getColor(R.color.writer));
+        mTvWeixin.setTextColor(getResources().getColor(R.color.writer));
         mTvFrd.setTextColor(getResources().getColor(R.color.writer));
         mTvAddress.setTextColor(getResources().getColor(R.color.writer));
         mTvSetting.setTextColor(getResources().getColor(R.color.writer));
@@ -143,21 +148,23 @@ public class TabActivity1 extends AppCompatActivity implements View.OnClickListe
         mTabBtnSettings.setOnClickListener(this);
 
         mImaWenxin = (ImageView) findViewById(R.id.btn_tab_bottom_weixin);
-        mImaWenxin.setBackgroundResource(R.drawable.tab_weixin_pressed);
+        mImaWenxin.setBackgroundResource(R.mipmap.tab_weixin_pressed);
         mImaFrd = (ImageView) findViewById(R.id.btn_tab_bottom_friend);
         mImaFrd.setBackgroundResource(R.mipmap.tab_find_frd_normal);
         mImaAddress = (ImageView) findViewById(R.id.btn_tab_bottom_contact);
-        mImaAddress.setBackgroundResource(R.drawable.tab_address_normal);
+        mImaAddress.setBackgroundResource(R.mipmap.tab_address_normal);
         mImaSetting = (ImageView) findViewById(R.id.btn_tab_bottom_setting);
-        mImaSetting.setBackgroundResource(R.drawable.tab_settings_normal);
+        mImaSetting.setBackgroundResource(R.mipmap.tab_settings_normal);
 
-        mTvWenxin = (TextView) findViewById(R.id.tv1);
-        mTvWenxin.setTextColor(getResources().getColor(R.color.green));
-        mTvFrd = (TextView) findViewById(R.id.tv2);
+        mTvWeixin = (TextView) findViewById(R.id.tv_wx);
+        // getResources().getColor()返回的是资源color.xml中的id引用
+        //arg1.setBackgroundColor(Color.parseColor("#87CEFA"));注意，传入的颜色字符串要完整
+        mTvWeixin.setTextColor(getResources().getColor(R.color.green));
+        mTvFrd = (TextView) findViewById(R.id.tv_friend);
         mTvFrd.setTextColor(getResources().getColor(R.color.writer));
-        mTvAddress = (TextView) findViewById(R.id.tv3);
+        mTvAddress = (TextView) findViewById(R.id.tv_contact);
         mTvAddress.setTextColor(getResources().getColor(R.color.writer));
-        mTvSetting = (TextView) findViewById(R.id.tv4);
+        mTvSetting = (TextView) findViewById(R.id.tv_set);
         mTvSetting.setTextColor(getResources().getColor(R.color.writer));
     }
 
@@ -165,15 +172,38 @@ public class TabActivity1 extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.id_tab_bottom_weixin:
+                resetButoon();
+                currentposition = 0;
+                mImaWenxin.setBackgroundResource(R.mipmap.tab_weixin_pressed);
+                mTvWeixin.setTextColor(getResources().getColor(R.color.green));
+                viewPager.setCurrentItem(0,false);
 
                 break;
             case R.id.id_tab_bottom_friend:
+                resetButoon();
+                currentposition = 1;
+                mImaFrd.setBackgroundResource(R.mipmap.tab_find_frd_pressed);
+                mTvFrd.setTextColor(getResources().getColor(R.color.green));
+                viewPager.setCurrentItem(1,false);
+
 
                 break;
             case R.id.id_tab_bottom_contact:
+                resetButoon();
+                currentposition = 2;
+                mImaAddress.setBackgroundResource(R.mipmap.tab_address_pressed);
+                mTvAddress.setTextColor(getResources().getColor(R.color.green));
+                viewPager.setCurrentItem(2,false);
+
 
                 break;
             case R.id.id_tab_bottom_setting:
+                resetButoon();
+                currentposition = 3;
+                mImaSetting.setBackgroundResource(R.mipmap.tab_settings_pressed);
+                mTvSetting.setTextColor(getResources().getColor(R.color.green));
+                viewPager.setCurrentItem(3,false);
+
 
                 break;
         }

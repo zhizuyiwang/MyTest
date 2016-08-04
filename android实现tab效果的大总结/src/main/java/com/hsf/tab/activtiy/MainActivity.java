@@ -17,6 +17,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(getSupportActionBar()!=null){
+            getSupportActionBar().hide();
+        }
         setContentView(R.layout.activity_main);
         initView();
     }
@@ -36,8 +39,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.tv1:
-                /*Intent activity1 = new Intent(this,TabActivity1.class);
-                startActivity(activity1);*/
+                Intent activity1 = new Intent(this,TabActivity1.class);
+                startActivity(activity1);
                 break;
             case R.id.tv2:
                 Intent activity2 = new Intent(this,TabActivity2.class);
