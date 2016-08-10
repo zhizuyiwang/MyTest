@@ -26,4 +26,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="支付失败"/>
+    <com.hsf.payAni.ConfirmView
+        android:id="@+id/confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </com.hsf.payAni.ConfirmView>
 </LinearLayout>

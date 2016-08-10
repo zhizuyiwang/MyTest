@@ -317,6 +317,7 @@ public class MyListView extends ListView implements AbsListView.OnScrollListener
     private void onLvRefresh() {
         if (refreshListener != null) {
             refreshListener.onRefresh();
+            refreshListener.onRefresh();
         }
     }
 

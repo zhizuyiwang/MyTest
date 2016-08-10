@@ -1,0 +1,127 @@
+ 一、Paint类：画笔
+ 在Android中，绘图操作一般是通过Paint画笔在Canvas画布上进行绘制的，最后将Canvas画布呈现给用户。绘图之前需要首先设置Paint画笔，
+ Android系统中通过Paint类来实现。Paint类中提供了很多方法来设置画笔属性，例如颜色、字体、透明度等。
+ 1、 setColor方法：设置颜色
+ 【功能说明】该方法用于设置画笔的颜色，可以通过Color类中的预定义颜色来设置，也可以通过指定RGB值来设置。该方法是设置颜色的主要方法，通过改变画笔颜色，可以绘制出色彩缤纷的图形。
+ 【基本语法】public void setColor (int color)
+
+ 其中，参数color为颜色值，也可以直接使用系统Color类中定义的颜色，如下所示。
+
+ Color.BLACK：黑色。
+
+ Color.BLUE：蓝色。
+
+ Color.CYAN：青绿色。
+
+ Color.DKGRAY：灰黑色。
+
+ Color.YELLOW：黄色。
+
+ Color.GRAY：灰色。
+
+ Color.GREEN：绿色。
+
+ Color.LTGRAY：浅灰色。
+
+ Color.MAGENTA：红紫色。
+
+ Color.RED：红色。
+
+ Color.TRANSPARENT：透明。
+
+ Color.WHITE：白色。
+
+2、 setAlpha方法：设置透明度
+【功能说明】该方法用于设置画笔的透明度，直观上表现为颜色变淡，具有一定的透明效果。该方法经常用于一些图片重叠或者特效显示的场合。
+
+【基本语法】public void setAlpha (int a)
+
+其中，参数a为透明度，取值范围为0~255，数值越小越透明。
+
+3、setStyle方法：设置风格
+【功能说明】该方法用于设置画笔的风格，可以指定是实心还是空心。该方法在矩形、圆形等图形上有明显的效果。
+
+【基本语法】public void setStyle ( Paint.Style style)
+
+其中，参数style为画笔的风格，为Paint.Style类型，可以取值如下。
+
+Style.FILL：实心。
+
+Style.FILL_AND_STROKE：同时实心和空心，该参数在某些场合会带来不可预期的显示效果。
+
+4、setStrokeWidth方法：设置空心线宽
+
+【功能说明】该方法用于设置画笔的空心线宽。该方法在矩形、圆形等图形上有明显的效果。
+
+【基本语法】public void setStrokeWidth (float width)
+
+其中，参数width为线宽，浮点型数据。
+
+5、setTextSize方法：设置字体大小
+【功能说明】该方法用于设置画笔的字体大小。该方法主要用在绘制字符串的场合，对于一些图形则没有效果。
+
+【基本语法】public void setTextSize (float textSize)
+
+ 其中，参数textSize为字体大小，浮点型数据。
+
+ 6、 setTypeface方法：设置字体样式
+
+【功能说明】该方法用于设置画笔的字体样式，可以指定系统自带的字体，也可以使用自定义的字体。该方法是设置画笔显示文本字体的最常用方法。
+
+【基本语法】public Typeface setTypeface ( Typeface typeface)
+
+ 其中，参数typeface为字体样式，具有如下几种取值。
+
+ Typeface.DEFAULT：默认字体。
+
+ Typeface.DEFAULT_BOLD：加粗字体。
+
+ Typeface.MONOSPACE：monospace字体。
+
+ Typeface.SANS_SERIF：sans字体。
+
+ Typeface.SERIF：serif字体
+
+
+7、setTextScaleX方法：设置比例因子
+
+【功能说明】该方法用于设置画笔字体的比例因子，默认为1，当大于1的时候表示横向拉伸，当小于1的时候表示横向压缩。该方法往往用于一些特效字体的显示场合。
+
+【基本语法】public void setTextScaleX (float scaleX)
+
+其中，参数scaleX为字体比例因子，当大于1的时候表示横向拉伸，当小于1的时候表示横向压缩。
+
+
+8、setARGB方法：设置透明度和颜色
+
+  【功能说明】该方法用于设置画笔的颜色和透明度，其中颜色采用的是RGB数值的方式指定。该方法的功能相当于setColor方法和setAlpha方法，使用非常方便。
+
+  【基本语法】public void setARGB (int a, int r, int g, int b)
+
+  参数说明
+
+  a：透明度，取值范围为0~255，数值越小越透明。
+
+  r：红色的颜色值，取值范围为0~255。
+
+  g：绿色的颜色值，取值范围为0~255。
+
+  b：蓝色的颜色值，取值范围为0~255。
+
+9、setUnderlineText方法：设置下画线
+
+【功能说明】该方法用于设置画笔的下画线。该方法主要用于绘制字符串的场合，对于其他一些图形则没有效果。
+
+【基本语法】public void setUnderlineText (boolean underlineText)
+
+其中，参数underlineText表示是否显示下画线，ture表示显示下画线，false表示不显示下画线。
+
+10、setTextSkewX方法：设置倾斜因子
+
+【功能说明】该方法用于设置画笔的倾斜因子，默认为0，正数表示向左倾斜，负数表示向右倾斜。该方法主要用于绘制字符串的场合，对于其他一些图形则没有效果。
+
+【基本语法】public void setTextSkewX (float skewX)
+
+ 其中，参数skewX为倾斜因子，正数表示向左倾斜，负数表示向右倾斜。
+
+11、

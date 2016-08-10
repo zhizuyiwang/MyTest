@@ -9,6 +9,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button progress;
     private Button success;
     private Button fail;
+    private ConfirmView confirmView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,19 +25,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         success.setOnClickListener(this);
         fail = (Button) findViewById(R.id.fail);
         fail.setOnClickListener(this);
+        confirmView = (ConfirmView) findViewById(R.id.confirm);
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.progress:
-
+                confirmView.animatedWithState(ConfirmView.State.Progressing);
                 break;
             case R.id.fail:
-
+                confirmView.animatedWithState(ConfirmView.State.Fail);
                 break;
             case R.id.success:
-
+                confirmView.animatedWithState(ConfirmView.State.Success);
                 break;
         }
     }

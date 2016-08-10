@@ -1,0 +1,455 @@
+ Canvas类：画布
+
+Android系统中的绘图操作主要是在Canvas画布上进行的，在绘图时，使用的是前面设置好的Paint画笔。在Android系统中，Canvas类提供了很多常用的图形，
+例如直线、矩形、圆形、文字等等。同时，我们也可以对画布设置颜色、尺寸等。Canvas画布是主要的绘图场所，这在前面的例子中已经用到。本节将主要介绍Canvas类中的方法。
+
+1、drawColor方法：设置背景颜色
+【功能说明】该方法用于设置画布的背景颜色，可以通过Color类中的预定义颜色来设置，也可以通过指定RGB值来设置。该方法是设置颜色的主要方法，通过改变画布颜色，可以绘制出色彩缤纷的背景。
+
+【基本语法】public void drawColor (int color)
+
+其中，参数color为颜色值。也可以直接使用系统Color类中定义的颜色。
+
+2、 drawLine方法：绘制直线
+【功能说明】该方法用于在画布上绘制直线，通过指定直线的两个端点坐标来绘制。该方法只能绘制单条直线；如果需要同时绘制多条直线，则可以使用drawLines方法。
+
+【基本语法】public void drawLine (float startX, float startY, float stopX, float stopY, Paint paint)
+
+参数说明
+
+startX：起始端点的X坐标。
+
+startY：起始端点的Y坐标。
+
+stopX：终止端点的X坐标。
+
+stopY：终止端点的Y坐标。
+
+paint：绘制直线所使用的画笔。
+要是想设置线的宽度，则使用Paint.setStrokeWidth()方法
+
+3、drawLines方法：绘制多条直线
+
+【功能说明】该方法用于在画布上绘制多条直线，通过指定直线的端点坐标数组来绘制。该方法可以绘制多条直线，非常灵活。
+
+【基本语法】public void drawLines (float[] pts, Paint paint)
+
+ 参数说明
+
+ pts：绘制直线的端点数组，每条直线占用4个数据。
+
+ paint：绘制直线所使用的画笔。
+
+4、drawLines方法：有选择地绘制多条直线
+
+  【功能说明】该方法用于在画布上绘制多条直线，通过指定直线的端点坐标数组来绘制。该方法可以绘制多条直线，同时也可以指定哪些线段绘制，而哪些线段不绘制，更加灵活。
+
+  【基本语法】public void drawLines (float[] pts, int offset, int count, Paint paint)
+
+  参数说明
+
+  pts：绘制直线的端点数组，每条直线占用4个数据。
+
+  offset：跳过的数据个数，这些数据将不参与绘制过程。
+
+  count：实际参与绘制的数据个数。
+
+  paint：绘制直线所使用的画笔。
+
+5、drawPoint方法：绘制点
+
+  【功能说明】该方法用于在画布上绘制一个点，通过指定端点坐标来绘制。该方法只能绘制单个点；如果需要同时绘制多个点，则可以使用drawPoints方法。
+
+  【基本语法】public void drawPoint (float x, float y, Paint paint)
+
+  参数说明
+
+  x：绘制点的X坐标。
+
+  y：绘制点的Y坐标。
+
+  paint：绘制直线所使用的画笔。
+
+  paint.setStrokeWidth((float) 20.0);来设置点的大小
+
+6、drawPoints方法：绘制多个点
+
+  【功能说明】该方法用于在画布上绘制多个点，通过指定端点坐标数组来绘制。该方法可以绘制多个点，同时也可以指定哪些点绘制，而哪些点不绘制，非常灵活。
+
+  【基本语法】drawPoints方法可以采用如下两种形式：
+
+  public void drawPoints (float[] pts, Paint paint)
+
+  public void drawPoints (float[] pts, int offset, int count, Paint paint)
+
+  参数说明
+
+  pts：绘制端点的数组，每个端点占用两个数据。
+
+  offset：跳过的数据个数，这些数据将不参与绘制过程。
+
+  count：实际参与绘制的数据个数。
+
+  paint：绘制时所使用的画笔。
+
+7、drawRect方法：绘制矩形
+
+  【功能说明】该方法用于在画布上绘制矩形，可以通过指定矩形的四条边来实现，也可以通过指定Rect对象来实现。同时也可以通过设置画笔的空心效果来绘制空心的矩形。
+
+  【基本语法】drawRect方法可以采用如下几种形式：
+
+  public void drawRect (Rect r, Paint paint)
+
+  public void drawRect (RectF rect, Paint paint)
+
+  public void drawRect (float left, float top, float right, float bottom, Paint paint)
+
+  参数说明
+
+  r：Rect对象。
+
+  rect：RectF对象。
+
+  left：矩形的左边位置。
+
+  top：矩形的上边位置。
+
+  right：矩形的右边位置。
+
+  bottom：矩形的下边位置。
+
+  paint：绘制时所使用的画笔。
+例子：
+protected void onDraw(Canvas canvas) {
+    // TODO Auto-generated method stub
+    super.onDraw(canvas);
+    paint.setAntiAlias(true);                       //设置画笔为无锯齿
+    paint.setColor(Color.BLACK);                    //设置画笔颜色
+    canvas.drawColor(Color.WHITE);                  //白色背景
+    paint.setStrokeWidth((float) 3.0);              //线宽
+    paint.setStyle(Style.STROKE);                   //空心效果
+    Rect r=new Rect();                          //Rect对象
+    r.left=50;                                  //左边
+    r.top=50;                                   //上边
+    r.right=450;                                    //右边
+    r.bottom=250;                                   //下边
+    canvas.drawRect(r, paint);                      //绘制矩形
+    canvas.drawRect(50, 400, 450, 600, paint);      //绘制矩形
+}
+
+8、 drawRoundRect方法：绘制圆角矩形
+
+  【功能说明】该方法用于在画布上绘制圆角矩形，通过指定RectF对象以及圆角半径来实现。该方法是绘制圆角矩形的主要方法，同时也可以通过设置画笔的空心效果来绘制空心的圆角矩形。
+
+  【基本语法】public void drawRoundRect (RectF rect, float rx, float ry, Paint paint)
+
+  参数说明
+
+  rect：RectF对象。
+
+  rx：x方向上的圆角半径。
+
+  ry：y方向上的圆角半径。
+
+  paint：绘制时所使用的画笔。
+  例子：
+  protected void onDraw(Canvas canvas) {
+      // TODO Auto-generated method stub
+      super.onDraw(canvas);
+      paint.setAntiAlias(true);                       //设置画笔为无锯齿
+      paint.setColor(Color.BLACK);                    //设置画笔颜色
+      canvas.drawColor(Color.WHITE);                  //白色背景
+      paint.setStrokeWidth((float) 3.0);              //线宽
+      paint.setStyle(Style.STROKE);                   //空心效果
+      Rect r1=new Rect();                         //Rect对象
+      r1.left=50;                                 //左边
+      r1.top=50;                                  //上边
+      r1.right=450;                                   //右边
+      r1.bottom=250;                              //下边
+      canvas.drawRect(r1, paint);                 //绘制矩形
+      RectF r2=new RectF();                           //RectF对象
+      r2.left=50;                                 //左边
+      r2.top=400;                                 //上边
+      r2.right=450;                                   //右边
+      r2.bottom=600;                              //下边
+      canvas.drawRoundRect(r2, 10, 10, paint);        //绘制圆角矩形
+  }
+
+ 9、drawCircle方法：绘制圆形
+
+   【功能说明】该方法用于在画布上绘制圆形，通过指定圆形圆心的坐标和半径来实现。该方法是绘制圆形的主要方法，同时也可以通过设置画笔的空心效果来绘制空心的圆形。
+
+   【基本语法】public void drawCircle (float cx, float cy, float radius, Paint paint)
+
+   参数说明
+
+   cx：圆心的x坐标。
+
+   cy：圆心的y坐标。
+
+   radius：圆的半径。
+
+   paint：绘制时所使用的画笔。
+   例子：
+   protected void onDraw(Canvas canvas) {
+       // TODO Auto-generated method stub
+       super.onDraw(canvas);
+       paint.setAntiAlias(true);                       //设置画笔为无锯齿
+       paint.setColor(Color.BLACK);                    //设置画笔颜色
+       canvas.drawColor(Color.WHITE);                  //白色背景
+       paint.setStrokeWidth((float) 3.0);              //线宽
+       paint.setStyle(Style.STROKE);                   //空心效果
+
+       canvas.drawCircle(50, 50, 10, paint);           //绘制圆形
+       canvas.drawCircle(100, 100, 20, paint);         //绘制圆形
+       canvas.drawCircle(150, 150, 30, paint);         //绘制圆形
+       canvas.drawCircle(200, 200, 40, paint);         //绘制圆形
+       canvas.drawCircle(250, 250, 50, paint);         //绘制圆形
+       canvas.drawCircle(300, 300, 60, paint);         //绘制圆形
+       canvas.drawCircle(350, 350, 70, paint);         //绘制圆形
+   }
+
+10、drawOval方法：绘制椭圆形
+
+   【功能说明】该方法用于在画布上绘制椭圆形，通过指定椭圆外切矩形的RectF对象来实现。该方法是绘制椭圆形的主要方法，同时也可以通过设置画笔的空心效果来绘制空心的椭圆形。
+
+   【基本语法】public void drawOval (RectF oval, Paint paint)
+
+   参数说明
+
+   oval：椭圆外切矩形的RectF对象。
+
+   paint：绘制时所使用的画笔。
+
+   【实例演示】下面通过代码来演示如何在画布上绘制椭圆形。
+
+   protected void onDraw(Canvas canvas) {
+       // TODO Auto-generated method stub
+       super.onDraw(canvas);
+       paint.setAntiAlias(true);                       //设置画笔为无锯齿
+       paint.setColor(Color.BLACK);                    //设置画笔颜色
+       canvas.drawColor(Color.WHITE);                  //白色背景
+       paint.setStrokeWidth((float) 3.0);              //线宽
+       paint.setStyle(Style.STROKE);
+
+       RectF oval=new RectF();                     //RectF对象
+       oval.left=100;                              //左边
+       oval.top=100;                                   //上边
+       oval.right=400;                             //右边
+       oval.bottom=300;                                //下边
+       canvas.drawOval(oval, paint);                   //绘制椭圆
+       oval.left=150;                              //左边
+       oval.top=400;                                   //上边
+       oval.right=350;                             //右边
+       oval.bottom=700;                                //下边
+       canvas.drawOval(oval, paint);                   //绘制椭圆
+   }
+
+11、drawPath方法：绘制任意多边形
+
+   【功能说明】该方法用于在画布上绘制任意多边形，通过指定Path对象来实现。在Path对象中规划了多边形的路径信息。该方法是绘制任意多边形的主要方法，当然也可以使用drawLines方法来实现，但是drawPath方法更为灵活、方便。
+
+   【基本语法】public void drawPath (Path path, Paint paint)
+
+   参数说明
+
+   path：包含路径信息的Path对象。
+
+   paint：绘制时所使用的画笔。
+
+   【实例演示】下面通过代码来演示如何在画布上绘制任意多边形。
+
+   protected void onDraw(Canvas canvas) {
+       // TODO Auto-generated method stub
+       super.onDraw(canvas);
+       paint.setAntiAlias(true);                       //设置画笔为无锯齿
+       paint.setColor(Color.BLACK);                    //设置画笔颜色
+       canvas.drawColor(Color.WHITE);                  //白色背景
+       paint.setStrokeWidth((float) 3.0);              //线宽
+       paint.setStyle(Style.STROKE);
+
+       Path path = new Path();                     //Path对象
+       path.moveTo(50, 100);                           //起始点
+       path.lineTo(50, 300);                           //连线到下一点
+       path.lineTo(100, 500);                      //连线到下一点
+       path.lineTo(400, 500);                      //连线到下一点
+       path.lineTo(300, 300);                      //连线到下一点
+       path.lineTo(450, 50);                           //连线到下一点
+       path.lineTo(200, 200);                      //连线到下一点
+       canvas.drawPath(path, paint);                   //绘制任意多边形
+   }
+
+12、drawArc方法：绘制圆弧
+
+   【功能说明】该方法用于在画布上绘制圆弧，通过指定圆弧所在的椭圆对象、起始角度、终止角度来实现。该方法是绘制圆弧的主要方法。
+
+   【基本语法】public void drawArc (RectF oval, float startAngle, float sweepAngle, boolean useCenter, Paint paint)
+
+   参数说明
+
+   oval：圆弧所在的椭圆对象。
+
+   startAngle：圆弧的起始角度。
+
+   sweepAngle：圆弧的角度。
+
+   useCenter：是否显示半径连线，true表示显示圆弧与圆心的半径连线，false表示不显示,也就是说当为true时，画的是扇形
+   为false时，画的为弧形
+
+   paint：绘制时所使用的画笔。
+
+   【实例演示】下面通过代码来演示如何在画布上绘制圆弧。
+
+   protected void onDraw(Canvas canvas) {
+       // TODO Auto-generated method stub
+       super.onDraw(canvas);
+       paint.setAntiAlias(true);                       //设置画笔为无锯齿
+       paint.setColor(Color.BLACK);                    //设置画笔颜色
+       canvas.drawColor(Color.WHITE);                  //白色背景
+       paint.setStrokeWidth((float) 3.0);              //线宽
+       paint.setStyle(Style.STROKE);
+
+       RectF oval=new RectF();                     //RectF对象
+       oval.left=100;                              //左边
+       oval.top=100;                                   //上边
+       oval.right=400;                             //右边
+       oval.bottom=300;                                //下边
+       canvas.drawArc(oval, 225, 90, false, paint);    //绘制圆弧
+
+       //RectF oval=new RectF();                       //RectF对象
+       oval.left=100;                              //左边
+       oval.top=400;                                   //上边
+       oval.right=400;                             //右边
+       oval.bottom=700;                                //下边
+       canvas.drawArc(oval, 200, 135, true, paint);    //绘制圆弧
+   }
+
+13、drawText方法：绘制字符串
+
+   【功能说明】该方法用于在画布上绘制字符串，通过指定字符串的内容和显示的位置来实现。在画布上绘制字符串是经常用到的操作，Android系统提供了非常灵活的绘制字符串的方法，可以根据不同的需要调用不同的方法来实现。字体的大小、样式等信息都需要在Paint画笔中来指定。
+
+   【基本语法】drawText方法可以采用如下几种形式：
+
+   public void drawText (String text, float x, float y, Paint paint)
+
+   public void drawText (char[] text, int index, int count, float x, float y, Paint paint)
+
+   public void drawText (CharSequence text, int start, int end, float x, float y, Paint paint)
+
+   public void drawText (String text, int start, int end, float x, float y, Paint paint)
+
+   参数说明
+
+   text：字符串内容，可以采用String格式，也可以采用char字符数组形式。
+
+   x：显示位置的x坐标。
+
+   y：显示位置的y坐标。
+
+   index：显示的起始字符位置。
+
+   count：显示字符的个数。
+
+   start：显示的起始字符位置。
+
+   end：显示的终止字符位置。
+
+   paint：绘制时所使用的画笔。
+
+   【实例演示】下面通过代码来演示如何在画布上绘制字符串。
+
+   protected void onDraw(Canvas canvas) {
+       // TODO Auto-generated method stub
+       super.onDraw(canvas);
+       paint.setAntiAlias(true);                                   //设置画笔为无锯齿
+       paint.setColor(Color.BLACK);                                //设置画笔颜色
+       canvas.drawColor(Color.WHITE);                              //白色背景
+       paint.setTextSize((float) 30.0);                            //设置字体大小
+
+       String str="Android应用程序开发";                         //字符串
+       char[] ch={'H','e','l','l','o',' ','A','n','d','r','o','i','d'};    //字符数组
+
+       canvas.drawText(str, 50, 200, paint);                           //绘制字符串
+       canvas.drawText(ch, 0, ch.length, 50, 300, paint);              //绘制字符串
+       canvas.drawText(str+" API详解", 0, str.length()+6, 50, 400, paint);//绘制字符串
+       canvas.drawText(str, 7, str.length(), 50, 500, paint);          //绘制字符串
+   }
+
+14、 drawBitmap方法：绘制图像
+
+   【功能说明】该方法用于在画布上绘制图像，通过指定Bitmap对象来实现。前面的各个方法都是自己绘制各个图形，但我们的应用程序往往
+    需要直接引用一些图片资源。这个时候，便可以使用drawBitmap方法来在画布上直接显示图像。
+
+   【基本语法】public void drawBitmap (Bitmap bitmap, float left, float top, Paint paint)
+
+   参数说明
+   bitmap：Bitmap对象，代表了图像资源。
+
+   left：图像显示的左边位置。
+
+   top：图像显示的上边位置。
+
+   paint：绘制时所使用的画笔。
+
+   【实例演示】下面通过代码来演示如何在画布上绘制图像。
+
+   protected void onDraw(Canvas canvas) {
+       // TODO Auto-generated method stub
+       super.onDraw(canvas);
+       paint.setAntiAlias(true);                       //设置画笔为无锯齿
+       paint.setColor(Color.BLACK);                    //设置画笔颜色
+       canvas.drawColor(Color.WHITE);                  //白色背景
+       paint.setStrokeWidth((float) 3.0);              //线宽
+       paint.setStyle(Style.STROKE);
+
+       Bitmap bitmap=null;                         //Bitmap对象
+       bitmap=((BitmapDrawable)getResources().getDrawable(R.drawable.icon)).getBitmap();
+       canvas.drawBitmap(bitmap, 50, 50, null);        //绘制图像
+       bitmap=((BitmapDrawable)getResources().getDrawable(R.drawable.bulb_on)).getBitmap();
+       canvas.drawBitmap(bitmap, 50, 150, null);       //绘制图像
+       bitmap=((BitmapDrawable)getResources().getDrawable(R.drawable.bulb_off)).getBitmap();
+       canvas.drawBitmap(bitmap, 50, 450, null);       //绘制图像
+   }
+15、save方法：锁定画布
+
+   【功能说明】该方法用于锁定画布，这种方法主要用于锁定画布中的某一个或几个对象，对锁定对象操作的场合。使用save方法锁定画布并完成操作之后，需要使用restore方法解除锁定。
+
+   【基本语法】public int save ()
+
+16、 clipRect方法：设置裁剪区
+
+   【功能说明】该方法用于裁剪画布，也就是设置画布的显示区域。在使用时，可以使用Rect对象来指定裁剪区，也可以通过指定矩形的4条边来指定裁剪区。该方法主要用于部分显示以及对画布中的部分对象进行操作的场合。
+
+   【基本语法】clipRect方法有如下几种形式：
+
+   public boolean clipRect (Rect rect)
+
+   public boolean clipRect (float left, float top, float right, float bottom)
+
+   public boolean clipRect (int left, int top, int right, int bottom)
+
+   参数说明
+
+   rect：Rect对象，用于定义裁剪区的范围。
+
+   left：矩形裁剪区的左边位置，可以是浮点型或者整型。
+
+   top：矩形裁剪区的上边位置，可以是浮点型或者整型。
+
+   right：矩形裁剪区的右边位置，可以是浮点型或者整型。
+
+   bottom：矩形裁剪区的下边位置，可以是浮点型或者整型。
+
+   【实例演示】下面通过代码来演示如何设置画笔的显示区域。
+
+   protected void onDraw(Canvas canvas) {
+       // TODO Auto-generated method stub
+       super.onDraw(canvas);
+       paint.setAntiAlias(true);                           //设置画笔为无锯齿
+       paint.setColor(Color.BLACK);                        //设置画笔颜色
+       paint.setTextSize((float) 30.0);                    //设置字体大小
+
+       canvas.clipRect(100, 100, 350, 600);                //设置显示范围
+       canvas.drawColor(Color.WHITE);                      //白色背景
+       canvas.drawText("Hello Android!", 150, 300, paint); //绘制字符串
+   }

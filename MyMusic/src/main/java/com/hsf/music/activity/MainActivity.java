@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         showTheme(currentPosition);
     }
 
+    //每一个下标都代表一个不同的fragment
     private void showTheme(int currentPosition) {
         if(currentPosition==0){
 

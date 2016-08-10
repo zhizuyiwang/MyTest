@@ -1,0 +1,255 @@
+很多的时候，系统自带的View满足不了我们功能的需求，那么我们就需要自己来自定义一个能满足我们需求的View,自定义View我们需要先继承View，
+添加类的构造方法，重写父类View的一些方法，例如onDraw，为了我们自定义的View在一个项目中能够重用，有时候我们需要自定义其属性，举个很简单的例子，
+我在项目中的多个界面使用我自定义的View，每个界面该自定义View的颜色都不相同，这时候如果没有自定义属性，那我们是不是需要构建不同颜色的View出来呢，
+这样子我们的代码就会显得很沉厄，所以这时候我们就需要自定义其属性来满足我们不同的需求，自定义属性呢，我们需要在values下建立attrs.xml文件，
+在其中定义我们需要定义的属性，然后在自定义View中也要做相对应的修改，我们还是用一个小例子来看看自定义View和自定义属性的使用。
+
+自定义控件的基础知识：
+view在显示到屏幕上需要经历以下三个步骤：
+1、Measure（测量）
+首先View需要测量自身的大小，包括长和宽。 当View类的成员函数measure决定要重新测量当前View的宽度和高度之后，会去调用另外一个
+成员函数onMeasure来真正执行测量宽度和高度的操作。因此，自定义View大多都需要覆写onMeasure方法来测量View的大小，onMeasure方法如下：
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
+其中widthMeasureSpec和heightMeasureSpec两个参数为父视图的建议大小。 参数measureSpec的值其实是由两部分内容来组成的，
+最高2位表示一个测量模式，而低30位表示一个宽度值或者高度值，测量模式有三种，分别是MeasureSpec.EXACTLY、MeasureSpec.UNSPECIFIED和MeasureSpec.AT_MOST
+
+2、Layout(布局)
+这个过程只在View容器（ViewGroup及其子类）有用，因为非容器类View在屏幕中的位置操作由父控件来决定，所以不需要覆写onLayout()方法。
+3、
+
+自定义属性的步骤：
+对于自定义属性，大家肯定都不陌生，遵循以下几步，就可以实现：
+1、自定义一个CustomView(extends View )类
+2、编写values/attrs.xml，在其中编写styleable和item等标签元素
+3、在布局文件中CustomView使用自定义的属性（注意namespace）
+4、在CustomView的构造方法中通过TypedArray获取
+
+
+首先，我们先认识一下什么是自定义属性，以及其详解
+1、reference:参考某一资源ID
+    属性定义：
+        <declare-styleable name="名称">
+            <attr name="background" format="reference">
+        <declare-styleable>
+    属性使用：
+        <ImageView
+
+            android:layout_width = "42dip"
+            android:layout_height = "42dip"
+            android:background = "@drawable/图片ID"/>
+
+2、color:颜色值
+    属性定义：
+        <declare-styleable name = "名称">
+            <attr name = "textColor" format = "color" />
+        </declare-styleable>
+    属性使用：
+          <TextView
+             android:layout_width = "42dp"
+             android:layout_height = "42dp"
+             android:textColor = "#00FF00"/>
+3、boolean：布尔值
+    属性定义：
+        <declare-styleable name = "名称">
+            <attr name = "focusable" format = "boolean" />
+        </declare-styleable>
+    属性使用：
+          <Button
+             android:layout_width = "42dp"
+             android:layout_height = "42dp"
+             android:focusable = "true"/>
+
+4、dimension：尺寸值
+    属性定义：
+        <declare-styleable name = "名称">
+            <attr name = "layout_width" format = "dimension" />
+        </declare-styleable>
+    属性使用：
+          <Button
+             android:layout_width = "42dp"
+             android:layout_height = "42dp"
+          />
+
+5、float：浮点型
+    属性定义：
+        <declare-styleable name = "AlphaAnimation">
+            <attr name = "fromAlpha" format = "float" />
+            <attr name = "toAlpha" format = "float" />
+        </declare-styleable>
+    属性使用：
+          <alpha
+            android:fromAlpha = "1.0"
+            android:toAlpha = "0.7"/>
+
+6、integer:整形值
+    属性定义：
+        <declare-styleable name = "AnimatedRotateDrawable">
+               <attr name = "visible" />
+               <attr name = "frameDuration" format="integer" />
+               <attr name = "framesCount" format="integer" />
+               <attr name = "pivotX" />
+               <attr name = "pivotY" />
+               <attr name = "drawable" />
+        </declare-styleable>
+    属性使用：
+          <animated-rotate
+               xmlns:android = "http://schemas.android.com/apk/res/android"
+               android:drawable = "@drawable/图片ID"
+               android:pivotX = "50%"
+               android:pivotY = "50%"
+               android:framesCount = "12"
+               android:frameDuration = "100"/>
+
+7、string：字符串
+
+    属性定义：
+        <declare-styleable name = "名称">
+             <attr name = "apiKey" format = "string" />
+        </declare-styleable>
+    属性使用：
+         <com.google.android.maps.MapView
+             android:layout_width = "fill_parent"
+             android:layout_height = "fill_parent"
+             android:apiKey = "0jOkQ80oD1JL9C6HAja99uGXCRiS2CGjKO_bc_g"/>
+
+8、fraction:百分数
+    属性定义：
+        <declare-styleable name = "名称">
+           <attr name = "visible" />
+           <attr name = "fromDegrees" format = "float" />
+           <attr name = "toDegrees" format = "float" />
+           <attr name = "pivotX" format = "fraction" />
+           <attr name = "pivotY" format = "fraction" />
+           <attr name = "drawable" />
+        </declare-styleable>
+    属性使用：
+      <rotate
+         xmlns:android = "http://schemas.android.com/apk/res/android"
+　　      android:interpolator = "@anim/动画ID"
+         android:fromDegrees = "0"
+　　      android:toDegrees = "360"
+         android:pivotX = "200%"
+         android:pivotY = "300%"
+　　      android:duration = "5000"
+         android:repeatMode = "restart"
+         android:repeatCount = "infinite"/>
+
+
+9、enum:枚举类型
+    属性定义：
+        <declare-styleable name = "名称">
+            <attr name = "orientation">
+                <enum name="horizontal" value="0"/>
+                <enum name="vertical" value="1"/>
+            </attr>
+        </declare-styleable>
+    属性使用：
+          <LinearLayout
+               xmlns:android = "http://schemas.android.com/apk/res/android"
+               android:orientation = "vertical"
+               android:layout_width = "fill_parent"
+               android:layout_height = "fill_parent"
+          </LinearLayout>
+
+
+10、flag:位或运算
+    属性定义：
+        <declare-styleable name = "名称">
+             <attr name="windowSoftInputMode">
+                <flag name = "stateUnspecified" value = "0" />
+                <flag name = "stateUnchanged" value = "1" />
+                <flag name = "stateHidden" value = "2" />
+                <flag name = "stateAlwaysHidden" value = "3" />
+                <flag name = "stateVisible" value = "4" />
+                <flag name = "stateAlwaysVisible" value = "5" />
+                <flag name = "adjustUnspecified" value = "0x00" />
+                <flag name = "adjustResize" value = "0x10" />
+                <flag name = "adjustPan" value = "0x20" />
+                <flag name = "adjustNothing" value = "0x30" />
+            </attr>
+       </declare-styleable>
+    属性使用：
+         <activity
+               android:name = ".StyleAndThemeActivity"
+               android:label = "@string/app_name"
+               android:windowSoftInputMode = "stateUnspecified | stateUnchanged　|　stateHidden">
+               <intent-filter>
+                      <action android:name = "android.intent.action.MAIN" />
+                      <category android:name = "android.intent.category.LAUNCHER" />
+               </intent-filter>
+         </activity>
+
+
+属性定义时可以指定多种类型值。
+
+    （1）属性定义：
+
+            <declare-styleable name = "名称">
+
+                <attr name = "background" format = "reference|color" />
+
+            </declare-styleable>
+
+    （2）属性使用：
+
+             <ImageView
+
+                     android:layout_width = "42dp"
+                     android:layout_height = "42dp"
+                     android:background = "@drawable/图片ID|#00FF00" />
+
+
+
+其次，我们再来看一下如何使用自定义的属性：
+如：定义一个属性
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+    <declare-styleable name="RoundProgressBar">
+        <attr name="roundColor" format="color"/>
+        <attr name="roundProgressColor" format="color"/>
+        <attr name="roundWidth" format="dimension"></attr>
+        <attr name="textColor" format="color" />
+        <attr name="textSize" format="dimension" />
+        <attr name="max" format="integer"></attr>
+        <attr name="textIsDisplayable" format="boolean"></attr>
+        <attr name="style">
+            <enum name="STROKE" value="0"></enum>
+            <enum name="FILL" value="1"></enum>
+        </attr>
+    </declare-styleable>
+</resources>
+在布局中使用文件，操作如下：
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android_custom="http://schemas.android.com/apk/res/com.example.circlepregress"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+
+    <com.example.roundprogressbar.RoundProgressBar
+        android:id="@+id/roundProgressBar2"
+        android:layout_width="80dip"
+        android:layout_height="80dip"
+        android:layout_alignLeft="@+id/roundProgressBar1"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="78dp"
+
+
+        android_custom:roundColor="#D1D1D1"
+        android_custom:roundProgressColor="@android:color/black"
+        android_custom:textColor="#9A32CD"
+        android_custom:textIsDisplayable="false"
+        android_custom:roundWidth="10dip"
+        android_custom:textSize="18sp"/>
+</RelativeLayout>
+必须在界面布局的最顶层加上
+ xmlns:android_custom="http://schemas.android.com/apk/res/com.example.circlepregress"这个即命名空间，
+android_custom是自定义属性的前缀，什么意思呢？对于android系统控件我们定义其控件属性是用android:XXX="XXXXXXX",而我们自己定义的就用android_custom:XXX = "XXXXXX"
+com.example.circlepregress则是我们的包的名字
+在代码中使用属性，就使用自定义属性时的set和get方法了
+
+注意，在studio中布局中是这样使用的xmlns:android_custom="http://schemas.android.com/apk/res-auto

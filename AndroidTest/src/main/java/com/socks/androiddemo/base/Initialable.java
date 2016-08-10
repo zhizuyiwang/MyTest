@@ -2,15 +2,15 @@ package com.socks.androiddemo.base;
 
 /**
  * ��ʼ���ӿ�
- * 
- * @ClassName: Initialable
+ *
  * @author ZhaoKaiQiang
+ * @ClassName: Initialable
  * @date 2015-3-27 ����11:23:11
  */
 public interface Initialable {
 
-	void initView();
+    void initView();
 
-	void initDate();
+    void initDate();
 
 }
