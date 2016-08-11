@@ -18,7 +18,9 @@ view在显示到屏幕上需要经历以下三个步骤：
 
 2、Layout(布局)
 这个过程只在View容器（ViewGroup及其子类）有用，因为非容器类View在屏幕中的位置操作由父控件来决定，所以不需要覆写onLayout()方法。
-3、
+3、Draw（绘制）
+  最后绘制View的过程，在这个过程里主要通过Paint对象在Canvas上面绘制相应图像，最终把View展现在屏幕上。 对于自定义View来说，通常需要覆写onDraw()方法绘制View。
+
 
 自定义属性的步骤：
 对于自定义属性，大家肯定都不陌生，遵循以下几步，就可以实现：
@@ -253,3 +255,6 @@ com.example.circlepregress则是我们的包的名字
 在代码中使用属性，就使用自定义属性时的set和get方法了
 
 注意，在studio中布局中是这样使用的xmlns:android_custom="http://schemas.android.com/apk/res-auto
+
+
+哈哈哈哈啊哈哈哈
