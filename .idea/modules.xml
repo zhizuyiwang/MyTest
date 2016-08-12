@@ -13,11 +13,13 @@
       <module fileurl="file://$PROJECT_DIR$/Titanic/Titanic.iml" filepath="$PROJECT_DIR$/Titanic/Titanic.iml" />
       <module fileurl="file://$PROJECT_DIR$/android实现tab效果的大总结/android实现tab效果的大总结.iml" filepath="$PROJECT_DIR$/android实现tab效果的大总结/android实现tab效果的大总结.iml" />
       <module fileurl="file://$PROJECT_DIR$/android绘图之canvas/android绘图之canvas.iml" filepath="$PROJECT_DIR$/android绘图之canvas/android绘图之canvas.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
       <module fileurl="file://$PROJECT_DIR$/test/test.iml" filepath="$PROJECT_DIR$/test/test.iml" />
       <module fileurl="file://$PROJECT_DIR$/属性动画大全/属性动画大全.iml" filepath="$PROJECT_DIR$/属性动画大全/属性动画大全.iml" />
       <module fileurl="file://$PROJECT_DIR$/带进度的圆形进度条/带进度的圆形进度条.iml" filepath="$PROJECT_DIR$/带进度的圆形进度条/带进度的圆形进度条.iml" />
       <module fileurl="file://$PROJECT_DIR$/自定义下拉刷新大集合/自定义下拉刷新大集合.iml" filepath="$PROJECT_DIR$/自定义下拉刷新大集合/自定义下拉刷新大集合.iml" />
+      <module fileurl="file://$PROJECT_DIR$/自定义控件/自定义控件.iml" filepath="$PROJECT_DIR$/自定义控件/自定义控件.iml" />
       <module fileurl="file://$PROJECT_DIR$/自定义柱状图饼图/自定义柱状图饼图.iml" filepath="$PROJECT_DIR$/自定义柱状图饼图/自定义柱状图饼图.iml" />
     </modules>
   </component>

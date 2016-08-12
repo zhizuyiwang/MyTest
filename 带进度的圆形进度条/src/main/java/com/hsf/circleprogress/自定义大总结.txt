@@ -15,6 +15,47 @@ view在显示到屏幕上需要经历以下三个步骤：
     }
 其中widthMeasureSpec和heightMeasureSpec两个参数为父视图的建议大小。 参数measureSpec的值其实是由两部分内容来组成的，
 最高2位表示一个测量模式，而低30位表示一个宽度值或者高度值，测量模式有三种，分别是MeasureSpec.EXACTLY、MeasureSpec.UNSPECIFIED和MeasureSpec.AT_MOST
+Android中自定义View的MeasureSpec使用
+有时，Android系统控件无法满足我们的需求，因此有必要自定义View。具体方法参见官方开发文档：http://developer.android.com/guide/topics/ui/custom-components.html
+
+一般来说，自定义控件都会去重写View的onMeasure方法，因为该方法指定该控件在屏幕上的大小。
+protected void onMeasure (int widthMeasureSpec, int heightMeasureSpec)
+onMeasure传入的两个参数是由上一层控件传入的大小，有多种情况，重写该方法时需要对计算控件的实际大小，然后调用setMeasuredDimension(int, int)设置实际大小。
+
+onMeasure传入的widthMeasureSpec和heightMeasureSpec不是一般的尺寸数值，而是将模式和尺寸组合在一起的数值。我们需要通过int mode = MeasureSpec.getMode(widthMeasureSpec)得到模式，用int size = MeasureSpec.getSize(widthMeasureSpec)得到尺寸。
+
+mode共有三种情况，取值分别为MeasureSpec.UNSPECIFIED, MeasureSpec.EXACTLY, MeasureSpec.AT_MOST。
+
+MeasureSpec.EXACTLY是精确尺寸，当我们将控件的layout_width或layout_height指定为具体数值时如andorid:layout_width="50dip"，或者为FILL_PARENT是，都是控件大小已经确定的情况，都是精确尺寸。
+
+MeasureSpec.AT_MOST是最大尺寸，当控件的layout_width或layout_height指定为WRAP_CONTENT时，控件大小一般随着控件的子空间或内容进行变化，此时控件尺寸只要不超过父控件允许的最大尺寸即可。因此，此时的mode是AT_MOST，size给出了父控件允许的最大尺寸。
+
+MeasureSpec.UNSPECIFIED是未指定尺寸，这种情况不多，一般都是父控件是AdapterView，通过measure方法传入的模式。
+
+因此，在重写onMeasure方法时要根据模式不同进行尺寸计算。下面代码就是一种比较典型的方式：
+@Override
+protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    setMeasuredDimension(getMeasuredLength(widthMeasureSpec, true), getMeasuredLength(heightMeasureSpec, false));
+}
+
+
+private int getMeasuredLength(int length, boolean isWidth) {
+    int specMode = MeasureSpec.getMode(length);
+    int specSize = MeasureSpec.getSize(length);
+    int size;
+    int padding = isWidth ? getPaddingLeft() + getPaddingRight()
+            : getPaddingTop() + getPaddingBottom();
+    if (specMode == MeasureSpec.EXACTLY) {
+        size = specSize;
+    } else {
+        size = isWidth ? padding + mWave.length / 4 : DEFAULT_HEIGHT
+                + padding;
+        if (specMode == MeasureSpec.AT_MOST) {
+            size = Math.min(size, specSize);
+        }
+    }
+    return size;
+}
 
 2、Layout(布局)
 这个过程只在View容器（ViewGroup及其子类）有用，因为非容器类View在屏幕中的位置操作由父控件来决定，所以不需要覆写onLayout()方法。
@@ -256,5 +297,36 @@ com.example.circlepregress则是我们的包的名字
 
 注意，在studio中布局中是这样使用的xmlns:android_custom="http://schemas.android.com/apk/res-auto
 
+在自定义控件中需要注意的问题：
+1、一般在自定义的控件构造函数中来进行画笔等对象的初始化
+2、在Android中设置数字类型的参数时如果没有特别的说明，参数的单位一般都为px像素。
+3、注意：当setStrokeWidth(0)的时候描边宽度并不为0而是只占一个像素
+4、postInvalidate()；用它替代我们原来的invalidate()，两者都可以重绘，调用onDraw()方法
+而postInvalidate是线程安全的，也就是说可以在子线程中使用它来重绘，invalidate（）只能在主线程中使用
+5、而且我发现，先测量后绘制，也就是说onMeasure()方法要先执行，然后在执行onDraw()方法，并且onMeasure()方法会执行两次，
+在执行第一次的时候getWidth()和getHeight()得到的数值是0，在执行第二次时才会有数值
 
-哈哈哈哈啊哈哈哈
+6、子定义控件由getWidth()和getHeight()得到的宽高是自定义的控件在布局中决定的，并且在自定义控件中会有以坐标画的
+图（圆、弧、线等），这些图依赖的坐标原点都是自定义控件在布局中所指定的位置大小决定的如：
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.hsf.cosutomView.MainActivity"
+    android:orientation="vertical">
+
+    <com.hsf.cosutomView.view.CustomeView
+        android:id="@+id/customView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="200dp">
+    </com.hsf.cosutomView.view.CustomeView>
+</LinearLayout>
+
+此时控件CustomeView的位置就在距离界面200多dp地方的一个高100dp，宽100dp的区域内，在这个小区域内作为画布，并以左上角为
+坐标原点

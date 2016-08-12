@@ -1,1 +1,1 @@
-include ':test', ':MyMusic', ':MyAlarm', ':MyPayAnimation', ':AndroidTest', ':PullToRefresh', ':Titanic', ':library', ':MyMusicPlayer', ':属性动画大全', ':带进度的圆形进度条', ':android实现tab效果的大总结', ':TTS的使用', ':自定义柱状图饼图', ':android绘图之canvas', ':自定义下拉刷新大集合'
+include ':test', ':MyMusic', ':MyAlarm', ':MyPayAnimation', ':AndroidTest', ':PullToRefresh', ':Titanic', ':library', ':MyMusicPlayer', ':属性动画大全', ':带进度的圆形进度条', ':android实现tab效果的大总结', ':TTS的使用', ':自定义柱状图饼图', ':android绘图之canvas', ':自定义下拉刷新大集合', ':app', ':自定义控件'
