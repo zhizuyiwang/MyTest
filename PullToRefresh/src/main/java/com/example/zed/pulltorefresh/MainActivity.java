@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 new AsyncTask<Void, Void, Void>() {
                     protected Void doInBackground(Void... params) {
                         try {
-                            Thread.sleep(1000);
+                            Thread.sleep(3000);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

@@ -1,0 +1,60 @@
+在自定义下拉刷新的过程中用到了回调机制，在这里我就好好总结一下android里面的回调机制
+callBack是回调的意思，一般称之为回调函数，比如一个正常的函数流程如：
+你饿了,想吃饭,就一会去问你妈一声"开饭没有啊?"
+一个回调的函数流程如下：
+但是今天你妈包饺子,花的时间比较长,你跑啊跑啊,就烦了.于是你给你妈说,我先出去玩会,开饭的时候打我手机.
+等过了一阵,你妈给你打电话说"开饭啦,回来吃饭吧!"
+其中,你告诉你妈打手机找你,就是你把回调函数句柄保存到你妈的动作.你妈打电话叫你,就是个回调过程.
+
+看一下例子，实现接口回调在定义的类中一共有三个步骤
+第一步，首先定义一个接口，此接口必须是public的，保证调用者可以使用，并且在此接口中需要定义一个函数原型，此函数原型就是回调函数，
+定义此函数原型的原因是为了约定好规范，以便于调用者告诉定义回调那个类要做什么事。
+public void OnRefreshListener{
+    void onRefresh();
+}
+
+第二步，在定义好接口后，再声明一下接口变量，并且定义一个设置接口对象的方法
+private OnRefreshListener onRefreshListener;
+
+public void setOnRefreshListener(OnRefreshListener onRefreshListener){
+    this.onRefreshListener  = onRefreshListener;
+}
+
+第三步，也就是最重要的一步，需要在合适的地方，调用onRefresh方法，达到回调的效果
+public void getMath(){
+    onRefreshListener.onRefresh();
+}
+这就定义好了一个接口回调函数
+
+使用的时候步骤及解析
+比如有两个类，A类和B类
+在B类中定义接口回调函数（也就是监听器），在A中注册监听，
+
+//声明一个接口
+public interface ICallBack {
+    void postExec();
+}
+//B类中一个方法里面有个参数是这个接口类型的对象，并在某个地方调用接口的方法
+public class B {
+    private ICallBack callBack;
+    public void setCallBack(ICallBack callBack) {
+        this.callBack =callBack;
+    }
+    public void doSth() {
+        callBack.postExec();
+    }
+}
+//在A类注册监听
+public class Test {b
+    public static void main(String[] args) {
+        B b = new B();
+        b.setCallBack(newICallBack() {
+            public void postExec() {
+                System.out.println("method executed.");
+            }
+        });
+        b.doSth();//调用函数
+    }
+}
+在A类中当调用B类中的doSth()函数时，B类就回调了A类的postExec()函数
+这是一种情况，但一般都是在A类中注册监听后等待B类执行doSth()方法

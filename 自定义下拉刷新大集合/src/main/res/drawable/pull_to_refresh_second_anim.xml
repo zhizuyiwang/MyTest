@@ -6,6 +6,4 @@
     <item android:drawable="@drawable/pull_end_image_frame_03" android:duration="100"/>
     <item android:drawable="@drawable/pull_end_image_frame_04" android:duration="100"/>
     <item android:drawable="@drawable/pull_end_image_frame_05" android:duration="100"/>
-    
-
 </animation-list>

@@ -14,7 +14,7 @@ import android.view.View;
  */
 public class CustomeView extends View implements Runnable{
     private Paint mPaint;
-    private float radius = 100;
+    private float radius = 30;
     public CustomeView(Context context) {
         super(context);
         initPaint();
@@ -43,6 +43,12 @@ public class CustomeView extends View implements Runnable{
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
+        int mode = MeasureSpec.getMode(widthMeasureSpec);
+        if(mode == MeasureSpec.AT_MOST){
+            Log.e("TAG","AT_MOST");
+        }else if(mode == MeasureSpec.EXACTLY){
+            Log.e("TAG","EXACTLY");
+        }
         Log.e("哈哈哈","先测量");
         Log.e("宽1",MeasureSpec.getSize(widthMeasureSpec)+"");
         Log.e("高2",MeasureSpec.getSize(heightMeasureSpec)+"");

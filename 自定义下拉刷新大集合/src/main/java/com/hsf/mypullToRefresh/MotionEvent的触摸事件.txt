@@ -1,0 +1,10 @@
+首先，我们要了解一下触摸事件中，触摸点的x、y坐标即左右间隔等定义的意义
+getRowX：触摸点相对于屏幕的坐标
+getX： 触摸点相对于按钮的坐标，在自定义控件中也就是距离自定义View的左上角的X、Y的坐标
+getTop： 按钮左上角相对于父view（LinerLayout）的y坐标
+getLeft： 按钮左上角相对于父view（LinerLayout）的x坐标
+
+可以想象 getRight()等同于下面的计算：getLeft()+getWidth()。
+
+getX()是表示Widget相对于自身左上角的x坐标,而getRawX()是表示相对于屏幕左上角的x坐标值(注意:这个屏幕左上角是手机屏幕左上角,
+不管activity是否有titleBar或是否全屏幕),getY(),getRawY()一样的道理

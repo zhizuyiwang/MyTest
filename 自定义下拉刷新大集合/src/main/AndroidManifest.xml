@@ -19,6 +19,10 @@
         </activity>
         <activity android:name=".activity.MeiTuanRefreshActivity">
         </activity>
+        <activity android:name=".activity.SeekBarActivity2">
+        </activity>
+        <activity android:name=".activity.AutoHomeRefreshActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -6,6 +6,7 @@
 
 自定义控件的基础知识：
 view在显示到屏幕上需要经历以下三个步骤：
+
 1、Measure（测量）
 首先View需要测量自身的大小，包括长和宽。 当View类的成员函数measure决定要重新测量当前View的宽度和高度之后，会去调用另外一个
 成员函数onMeasure来真正执行测量宽度和高度的操作。因此，自定义View大多都需要覆写onMeasure方法来测量View的大小，onMeasure方法如下：
@@ -59,6 +60,7 @@ private int getMeasuredLength(int length, boolean isWidth) {
 
 2、Layout(布局)
 这个过程只在View容器（ViewGroup及其子类）有用，因为非容器类View在屏幕中的位置操作由父控件来决定，所以不需要覆写onLayout()方法。
+
 3、Draw（绘制）
   最后绘制View的过程，在这个过程里主要通过Paint对象在Canvas上面绘制相应图像，最终把View展现在屏幕上。 对于自定义View来说，通常需要覆写onDraw()方法绘制View。
 
