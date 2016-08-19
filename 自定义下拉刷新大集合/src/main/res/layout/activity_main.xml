@@ -28,6 +28,14 @@
         android:textSize="25sp"
         android:text="SeekBar的使用技巧2"/>
     <TextView
+        android:id="@+id/tv5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:clickable="true"
+        android:textSize="25sp"
+        android:text="SeekBar的使用技巧3"/>
+    <TextView
         android:id="@+id/tv4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,4 +51,5 @@
         android:clickable="true"
         android:textSize="25sp"
         android:text="仿美团下拉刷新"/>
+
 </LinearLayout>

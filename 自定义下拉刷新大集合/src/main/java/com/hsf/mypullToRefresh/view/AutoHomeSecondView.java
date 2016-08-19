@@ -18,5 +18,6 @@ public class AutoHomeSecondView extends View {
 
     public AutoHomeSecondView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+
     }
 }

@@ -1,0 +1,9 @@
+首先，需要知道的是，View是可以延伸到屏幕之外的，可以想象一下ListVIew或GridView。也就是说View的尺寸可以超过屏幕的尺寸。
+
+View的大小就是onDraw()中Canvas画布的大小。Canvas可以做translate()、clipRect()等变换，可以说Canvas是无边界的。
+
+而我们在屏幕上所见到的，只是Canvas的一部分而已。可以调用View的scrollTo()和scrollBy()将视图绘制到指定区域。
+
+那么View中的scrollTo()和scrollBy()又是怎么回事呢？
+
+在本例子中发现一个问题，当自定义的ListView的条目没有充满屏幕时，smoothScrollBy()没有效果

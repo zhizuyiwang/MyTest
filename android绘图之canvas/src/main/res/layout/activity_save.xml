@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.hsf.mypullToRefresh.activity.AutoHomeRefreshActivity">
-    <com.hsf.mypullToRefresh.view.AutoHomeListView
-        android:id="@+id/listView"
+    tools:context="com.hsf.canvas2.activity.SaveActivity">
+    <com.hsf.canvas2.view.SaveCanvasView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
-    </com.hsf.mypullToRefresh.view.AutoHomeListView>
+    </com.hsf.canvas2.view.SaveCanvasView>
 
 </RelativeLayout>

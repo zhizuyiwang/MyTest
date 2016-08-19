@@ -43,7 +43,7 @@ public class MeiTuanRefreshSecondView extends View {
         int width = MeasureSpec.getSize(widthMeasureSpec);
         int mode = MeasureSpec.getMode(widthMeasureSpec);
         if(mode==MeasureSpec.EXACTLY){
-            result = mode;
+            result = width;
         }else{
             int size = endBitmap.getWidth();
             if(mode == MeasureSpec.AT_MOST){

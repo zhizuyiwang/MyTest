@@ -174,17 +174,22 @@ public class MeiTuanListView extends ListView implements AbsListView.OnScrollLis
                                     state = RELEASE_REFRESH;
                                     Log.e("TAG","释放刷新");
                                     changeState(state);
+                                    //如果当前y的位移值小于0，即为headerView隐藏了
                                 }else if(offsetY<=0){
                                     state = DONE;
                                     changeState(state);
                                 }
                             }
                             if(state == DONE && isRecord){
+                                //如果位移值大于0
                                 if(offsetY>0){
+                                    //改为下拉刷新状态
                                     state = PULL_TO_REFRESH;
                                     changeState(state);
                                 }
                             }
+                            //如果当前是下拉刷新状态，则随着手指移动不断的设置刷新头的位置，并根据进度改变椭圆图的大小
+
                             if(state == PULL_TO_REFRESH){
                                 headerView.setPadding(0, (int) (-headerViewHeight+offsetY/RATIO),0,0);
                                 firstView.setProgress(currentProgress);
@@ -192,7 +197,6 @@ public class MeiTuanListView extends ListView implements AbsListView.OnScrollLis
                             }
                             if(state == RELEASE_REFRESH){
                                 headerView.setPadding(0, (int) (-headerViewHeight+offsetY/RATIO),0,0);
-
                             }
                         }else{
 
@@ -235,7 +239,7 @@ public class MeiTuanListView extends ListView implements AbsListView.OnScrollLis
                 break;
             case REFRESHING:
                 tv_pull_to_refresh.setText("正在刷新");
-                firstView.setVisibility(VISIBLE);
+                firstView.setVisibility(GONE);
 
                 secondView.setVisibility(GONE);
                 secondAnim.stop();
