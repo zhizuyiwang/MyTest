@@ -8,7 +8,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.hsf.canvas2.R;
-import com.hsf.canvas2.view.DrawView;
 import com.hsf.canvas2.view.MyGraphic;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
@@ -17,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView tv1;
     private TextView tv2;
     private TextView tv3;
+    private TextView tv4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +33,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv2.setOnClickListener(this);
         tv3 = (TextView) findViewById(R.id.tv3);
         tv3.setOnClickListener(this);
+        tv4 = (TextView) findViewById(R.id.tv4);
+        tv4.setOnClickListener(this);
+
     }
 
     @Override
@@ -49,6 +52,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.tv3:
                 Intent intent3 = new Intent(MainActivity.this,SaveActivity.class);
                 startActivity(intent3);
+                break;
+            case R.id.tv4:
+                Intent intent4 = new Intent(MainActivity.this, WordPadActivity.class);
+                startActivity(intent4);
                 break;
         }
     }

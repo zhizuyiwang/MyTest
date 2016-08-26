@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="WordPadView">
+        <attr name="paint_color" format="color"></attr>
+        <attr name="paint_stroke" format="dimension"></attr>
+        <attr name="wordPad_color" format="color"></attr>
+        <attr name="rubber_stroke" format="dimension"></attr>
+    </declare-styleable>
+</resources>

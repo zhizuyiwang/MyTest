@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView tv2;
     private TextView tv3;
     private TextView tv4;
+    private TextView tv5;
 
 
     @Override
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         tv3.setOnClickListener(this);
         tv4 = (TextView) findViewById(R.id.tv4);
         tv4.setOnClickListener(this);
+        tv5 = (TextView) findViewById(R.id.tv5);
+        tv5.setOnClickListener(this);
     }
 
     @Override
@@ -52,6 +55,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.tv4:
                 Intent intent4 = new Intent(MainActivity.this,AutoHomeRefreshActivity.class);
                 startActivity(intent4);
+                break;
+            case R.id.tv5:
+                Intent intent5 = new Intent(MainActivity.this,SeekBarActivity3.class);
+                startActivity(intent5);
                 break;
         }
     }

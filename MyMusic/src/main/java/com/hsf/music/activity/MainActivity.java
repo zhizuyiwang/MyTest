@@ -1,27 +1,42 @@
 package com.hsf.music.activity;
 
-import android.content.res.Configuration;
 import android.media.MediaPlayer;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.LinearLayout;
+import android.widget.FrameLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.hsf.music.R;
+import com.hsf.music.fragment.Fragment1;
+import com.hsf.music.fragment.Fragment10;
+import com.hsf.music.fragment.Fragment11;
+import com.hsf.music.fragment.Fragment12;
+import com.hsf.music.fragment.Fragment13;
+import com.hsf.music.fragment.Fragment14;
+import com.hsf.music.fragment.Fragment15;
+import com.hsf.music.fragment.Fragment2;
+import com.hsf.music.fragment.Fragment3;
+import com.hsf.music.fragment.Fragment4;
+import com.hsf.music.fragment.Fragment5;
+import com.hsf.music.fragment.Fragment6;
+import com.hsf.music.fragment.Fragment7;
+import com.hsf.music.fragment.Fragment8;
+import com.hsf.music.fragment.Fragment9;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener,Runnable{
@@ -32,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button next;
     private Button previous;
     private SeekBar progress;
-    private LinearLayout ll;
+    private FrameLayout content;
     private Button change;
     private boolean isrun = false;//是否正在播放,默认是没有播放
     private boolean isPause;//是否暂停
@@ -50,13 +65,33 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private int playModel = 3;//播放模式，默认是顺序模式
     private Random random;
 
+    private ArrayList<Fragment> fragments = new ArrayList<Fragment>();
+    private Fragment fragment1;
+    private Fragment fragment2;
+    private Fragment fragment3;
+    private Fragment fragment4;
+    private Fragment fragment5;
+    private Fragment fragment6;
+    private Fragment fragment7;
+    private Fragment fragment8;
+    private Fragment fragment9;
+    private Fragment fragment10;
+    private Fragment fragment11;
+    private Fragment fragment12;
+    private Fragment fragment13;
+    private Fragment fragment14;
+    private Fragment fragment15;
+
+    private FragmentManager mFragmentManager;
+    private FragmentTransaction transaction;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         /**
          * requestWindowFeature(Window.FEATURE_NO_TITLE);这句失效了。
 
-         解决方法有两种
+         解决方法有
          1、将AppCompatActivity改为Activity，此时 requestWindowFeature(Window.FEATURE_NO_TITLE);是有效的
          2、在onCreate()方法中加入如下代码：
          if (getSupportActionBar() != null){
@@ -74,60 +109,211 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initData();
         playMusic(currentPosition);
         showTheme(currentPosition);
+
     }
 
-    //每一个下标都代表一个不同的fragment
-    private void showTheme(int currentPosition) {
-        if(currentPosition==0){
 
+
+    //每一个下标都代表一个不同的fragment,在这里切换主题，也就是切换Fragment有两种方式，一是用replace()来替换
+    //另一个就是用add(),hide(),show(),来添加显示和隐藏Fragment,replace（）的用法相当于先remove掉在add()，
+    //是remove和add的结合体，在这里我们用replace（）方法来切换Fragment
+    private void showTheme(int currentPosition1) {
+
+        transaction = mFragmentManager.beginTransaction();
+        hideFragment(transaction);
+        switch (currentPosition1){
+            case 0:
+                if(fragment1==null){
+                    fragment1 = new Fragment1();
+                    transaction.add(R.id.content,fragment1);
+                    Log.e("TAG","添加第一个Fragment");
+
+                }else{
+
+                    transaction.show(fragment1);
+                    Log.e("TAG","显示第一个Fragment");
+                }
+                break;
+            case 1:
+                if(fragment2==null){
+                    fragment2 = new Fragment2();
+                    transaction.add(R.id.content,fragment2);
+                    Log.e("TAG","添加第二个Fragment");
+                }else{
+
+                    transaction.show(fragment2);
+                    Log.e("TAG","显示第二个Fragment");
+                }
+                break;
+            case 2:
+                if(fragment3==null){
+                    fragment3 = new Fragment3();
+                    transaction.add(R.id.content,fragment3);
+                    Log.e("TAG","添加第三个Fragment");
+                }else{
+                    transaction.show(fragment3);
+                    Log.e("TAG","显示第三个Fragment");
+                }
+
+                break;
+            case 3:
+                if(fragment4==null){
+                    fragment4 = new Fragment4();
+                    transaction.add(R.id.content,fragment4);
+                    Log.e("TAG","添加第四个Fragment");
+                }else{
+                    transaction.show(fragment4);
+                    Log.e("TAG","显示第四个Fragment");
+                }
+
+                break;
+            case 4:
+                if(fragment5==null){
+                    fragment5 = new Fragment5();
+                    transaction.add(R.id.content,fragment5);
+                }else{
+                    transaction.show(fragment5);
+                }
+                break;
+            case 5:
+                if(fragment6==null){
+                    fragment6 = new Fragment6();
+                    transaction.add(R.id.content,fragment6);
+                }else{
+                    transaction.show(fragment6);
+                }
+                break;
+            case 6:
+                if(fragment7==null){
+                    fragment7 = new Fragment7();
+                    transaction.add(R.id.content,fragment7);
+                }else{
+                    transaction.show(fragment7);
+                }
+                break;
+            case 7:
+                if(fragment8==null){
+                    fragment8 = new Fragment8();
+                    transaction.add(R.id.content,fragment8);
+                }else{
+                    transaction.show(fragment8);
+                }
+                break;
+            case 8:
+                if(fragment9==null){
+                    fragment9 = new Fragment9();
+                    transaction.add(R.id.content,fragment9);
+                }else{
+                    transaction.show(fragment9);
+                }
+                break;
+            case 9:
+                if(fragment10==null){
+                    fragment10 = new Fragment10();
+                    transaction.add(R.id.content,fragment10);
+                }else{
+                    transaction.show(fragment10);
+                }
+                break;
+            case 10:
+                if(fragment11==null){
+                    fragment11 = new Fragment11();
+                    transaction.add(R.id.content,fragment11);
+                }else{
+                    transaction.show(fragment11);
+                }
+                break;
+            case 11:
+                if(fragment12==null){
+                    fragment12 = new Fragment12();
+                    transaction.add(R.id.content,fragment12);
+                }else{
+                    transaction.show(fragment12);
+                }
+                break;
+            case 12:
+                if(fragment13==null){
+                    fragment13 = new Fragment13();
+                    transaction.add(R.id.content,fragment13);
+                }else{
+                    transaction.show(fragment13);
+                }
+                break;
+            case 13:
+                if(fragment14==null){
+                    fragment14 = new Fragment14();
+                    transaction.add(R.id.content,fragment14);
+                }else{
+                    transaction.show(fragment14);
+                }
+                break;
+            case 14:
+                if(fragment15==null){
+                    fragment15 = new Fragment15();
+                    transaction.add(R.id.content,fragment15);
+                }else{
+                    transaction.show(fragment15);
+                }
+                break;
 
         }
-        if(currentPosition==1){
+        transaction.commit();
+
+    }
+
+    private void hideFragment(FragmentTransaction transaction) {
+        if(fragment1!=null){
+            transaction.hide(fragment1);
+        }
+        if(fragment2!=null){
+            transaction.hide(fragment2);
 
         }
-        if(currentPosition==2){
+        if(fragment3!=null){
+            transaction.hide(fragment3);
+        }
+        if(fragment4!=null){
+            transaction.hide(fragment4);
 
         }
-        if(currentPosition==3){
+        if(fragment5!=null){
+            transaction.hide(fragment5);
+        }
+        if(fragment6!=null){
+            transaction.hide(fragment6);
 
         }
-        if(currentPosition==4){
+        if(fragment7!=null){
+            transaction.hide(fragment7);
+        }
+        if(fragment8!=null){
+            transaction.hide(fragment8);
 
         }
-        if(currentPosition==5){
+        if(fragment9!=null){
+            transaction.hide(fragment9);
+        }
+        if(fragment10!=null){
+            transaction.hide(fragment10);
 
         }
-        if(currentPosition==6){
+        if(fragment11!=null){
+            transaction.hide(fragment11);
+        }
+        if(fragment12!=null){
+            transaction.hide(fragment12);
 
         }
-        if(currentPosition==7){
+        if(fragment13!=null){
+            transaction.hide(fragment13);
+        }
+        if(fragment14!=null){
+            transaction.hide(fragment14);
 
         }
-        if(currentPosition==8){
-
+        if(fragment15!=null){
+            transaction.hide(fragment15);
         }
-        if(currentPosition==9){
-
-        }
-        if(currentPosition==10){
-
-        }
-        if(currentPosition==11){
-
-        }
-        if(currentPosition==12){
-
-        }
-        if(currentPosition==13){
-
-        }
-        if(currentPosition==14){
-
-        }
-
-
-
-
 
     }
 
@@ -140,7 +326,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         };
         random = new Random();
         currentPosition = random.nextInt(15);
-
+        mFragmentManager = getSupportFragmentManager();
     }
 
     private void initView() {
@@ -164,8 +350,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         previous.setVisibility(View.GONE);
         previous.setOnClickListener(this);
         progress = (SeekBar) findViewById(R.id.progress);
-        ll = (LinearLayout) findViewById(R.id.ll);
-        ll.setBackgroundResource(R.color.colorAccent);
+        content = (FrameLayout) findViewById(R.id.content);
         change = (Button) findViewById(R.id.change);
         change.setOnClickListener(this);
         progress.setVisibility(View.GONE);
@@ -259,9 +444,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 nextPlay();
                 break;
             case R.id.change://切换主题
-                currentPosition = random.nextInt(15);
-                showTheme(currentPosition);//展示主题
-                playMusic(currentPosition);//播放音乐
+                //change.setEnabled(false);
+                nextPlay();//播放音乐
+               /* new Thread(){
+                    @Override
+                    public void run() {
+                        super.run();
+                        SystemClock.sleep(1500);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                change.setEnabled(true);
+                            }
+                        });
+                    }
+                }.start();*/
                 break;
         }
 

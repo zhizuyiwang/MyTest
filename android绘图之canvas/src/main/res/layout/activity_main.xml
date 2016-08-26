@@ -35,6 +35,14 @@
         android:textSize="20sp"
         android:text="画布的save和restore用法"
         />
+    <TextView
+        android:id="@+id/tv4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:layout_marginBottom="10dp"
+        android:textSize="20sp"
+        android:text="android 写字板"/>
     <!--<com.hsf.canvas2.view.MyGraphic
         android:id="@+id/kk"
         android:layout_width="100dp"
