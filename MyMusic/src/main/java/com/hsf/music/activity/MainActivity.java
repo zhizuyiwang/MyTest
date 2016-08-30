@@ -525,6 +525,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         showTheme(currentPosition);
 
     }
+    private void nextPlay1() {
+        stopPlay();
+        start.setEnabled(true);
+        pause.setEnabled(true);
+        stop.setEnabled(true);
+
+        if(playModel == RANDOM_MODEL){
+            currentPosition = random.nextInt(15);
+        }else if(playModel == SEQUENCE_MODEL || playModel == LOOP_MODEL){
+            currentPosition++;
+            if(currentPosition > musicList.length-1){
+                currentPosition = 0;
+            }
+        }
+
+        playMusic(currentPosition);
+        showTheme(currentPosition);
+
+    }
 
     private void previousPlay() {
         stopPlay();
@@ -572,7 +591,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         loopPlayMusic();
                     }else{
 
-                        nextPlay();
+                        nextPlay1();
                     }
 
                 }

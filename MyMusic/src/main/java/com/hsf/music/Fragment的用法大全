@@ -95,3 +95,17 @@ Fragment的中级用法，主要解决一下问题：
     3、Fragment与Activity交互的最佳实践
     4、没有视图的Fragment的用处
     5、使用Fragment创建对话框，如何与ActionBar，MenuItem集成等~~
+
+1、管理Fragment的回退栈
+    类似于android为Activity维护一个任务栈，我们也可以通过Activity为Fragment维护一个回退栈来保存每次Fragment事务发生的变化，如果将Fragment任务加到
+    回退栈，在用户点击返回按钮时，可以看到上次保存的Fragment,一旦Fragment完全从回退栈退出，再点击返回键，就会退出当前Activity
+
+    如何添加一个Fragment事务到回退栈：
+    FragmentTransaction.addToBackStack();方法用来把当前的事务添加到回退栈中，此方法一调用，被替换的或被隐藏的Fragment的实例是不会被销毁的
+
+    比如有三个Fragment，一个Activity，在第一个Fragment实例化并添加到Activity后会显示出来，即事务的add()方法.
+    第二个Fragment要显示在Activity上去时有两种方式，第一种方式为：在事务调用addToBackStack()方法后，若此时事务使用replace()显示第二个，
+    第一个Fragment实例是不会被销毁的，但其视图层是会被销毁的，即会会调用onDestroyView和onCreateView方法。
+    第二种方法是：先隐藏第一个Fragment，再添加第二个Fragment实例，然后添加事务到回退栈，此时，第一个Fragment是不会被销毁的，并且视图也不会被销毁
+
+
