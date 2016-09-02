@@ -8,14 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * 热气球
  * Created by Administrator on 2016/8/2.
  */
-public class Fragment2 extends Fragment{
+public class Fragment14 extends Fragment{
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_fragment2,container,false);
+        View view = inflater.inflate(R.layout.activity_fragment14,container,false);
         return view;
     }
 }
