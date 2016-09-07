@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.change:
-                currentPosition = random.nextInt(15);
+                currentPosition = random.nextInt(3);
                 Log.e("TAG",currentPosition+"");
                 changeTheme(currentPosition);
                 break;

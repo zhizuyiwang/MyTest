@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private final static int RANDOM_MODEL = 3;//随机模式
     private int playModel = 3;//播放模式，默认是顺序模式
     private Random random;
+    private boolean isResume;
 
     private ArrayList<Fragment> fragments = new ArrayList<Fragment>();
     private Fragment fragment1;
@@ -541,7 +542,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         playMusic(currentPosition);
-        showTheme(currentPosition);
+        if(isResume){
+            showTheme(currentPosition);
+        }
 
     }
 
@@ -662,4 +665,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             progress.invalidate();
         }
     };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        isResume = true;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        isResume = false;
+    }
 }

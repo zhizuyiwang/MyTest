@@ -1,0 +1,90 @@
+onCreate() 中 View 尚未绘制完成
+很多时候，我们需要在某个界面刚刚加载的时候，执行一些对 View 进行操作的代码，通常我们把这些代码放在 Activity 的 onCreate()
+方法或 Fragment 的 onCreateView() 方法中。但因为在这些 Hook 方法被调用时，View 并没有绘制完成，很多操作不能生效。
+比如，在 onCreate() 中调用某个按钮的 myButton.getHeight()，得到的结果永远是0。
+
+更晚调用的生命周期函数：
+那么既然 onCreate() 中，控件尚未绘制完成，那么将代码写在更晚执行的一些生命周期函数中，问题是不是能得到解决呢？
+之后分别在 Activity 中的一些常用的 Hook 函数中，尝试获取控件的尺寸，得到如下结果（按被执行的顺序排列）：
+
+onCreate(): Height=0
+onStart(): Height=0
+onPostCreate(): Height=0
+onResume(): Height=0
+onPostResume(): Height=0
+onAttachedToWindow(): Height=0
+onWindowsFocusChanged(): Height=1845
+可以看到，直到 onWindowsFocusChanged() 函数被调用，我们才能得到正确的控件尺寸。其他 Hook 函数，包括在官方文档中，
+描述为在 Activity 完全启动后才调用的 onPostCreate() 和 onPostResume() 函数，均不能得到正确的结果。
+
+遗憾的是，虽然在 onWindowsFocusChanged() 函数中，可以得到正确的控件尺寸。但这只在 Activity 中奏效，而在 Fragment 中，该方法并不能生效。
+=========================================================================================================================
+@Override
+  public void onCreate(Bundle savedInstanceState) {
+      super.onCreate(savedInstanceState);
+      setContentView(R.layout.main);
+      final ImageView imageView = (ImageView) findViewById(R.id.imageview);
+      int w = View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED);
+      int h = View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED);
+      imageView.measure(w, h);
+      int height =imageView.getMeasuredHeight();
+      int width =imageView.getMeasuredWidth();
+      textView.append("\n"+height+","+width);
+      System.out.println("执行完毕.."+System.currentTimeMillis());
+
+一共有四种方式：
+第一种：先构建出MeasureWidth和MeasureHeight，再用控件去测量
+int w = View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED);
+int h = View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED);
+imageView.measure(w, h);
+int height =imageView.getMeasuredHeight();
+int width =imageView.getMeasuredWidth();
+textView.append("\n"+height+","+width);
+
+第二种：（亲测可用！在onStart（）方法中调用）
+ViewTreeObserver vto = imageView.getViewTreeObserver();
+vto.addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+    public boolean onPreDraw() {
+        int height = imageView.getMeasuredHeight();
+        int width = imageView.getMeasuredWidth();
+        textView.append("\n"+height+","+width);
+        return true;
+    }
+});
+
+第三种：
+ViewTreeObserver vto2 = imageView.getViewTreeObserver();
+vto2.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
+    @Override
+    public void onGlobalLayout() {
+        imageView.getViewTreeObserver().removeGlobalOnLayoutListener(this);// 取消 全局layout 监听
+        textView.append("\n\n"+imageView.getHeight()+","+imageView.getWidth());
+    }
+});
+第四种：使用View的post()方法，最佳，可以在fragment中使用
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_welcome);
+    myButton = (Button) findViewById(R.id.button1);
+
+    // 使用myButton 的 post() 方法
+    myButton.post(new Runnable() {
+        @Override
+        public void run() {
+            int h = myButton.getHeight();
+            Log.i(TAG, "Height=" + h); // 得到正确结果
+        }
+    });
+
+    // ...
+}
+该方法同样在 Fragment 中适用，是目前发现的最佳解决方案。
+
+注意：通过调用测量对象的 post() 方法注册的 Runnable 总在对象完全绘制后才调用，所以可以得到正确的结果。
+但直接在 onCreate() 中，使用 new Handler().post(mRunnable) 并不能得到正确的结果。
+
+====================================================================================================
+布局参数的整理
+

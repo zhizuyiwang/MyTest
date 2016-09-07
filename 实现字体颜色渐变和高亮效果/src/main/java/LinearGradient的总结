@@ -1,0 +1,30 @@
+要用TextView的渐变色，就必须用到一个类，LinearGradient，下面来看看LinearGradient的介绍：
+LinearGradient也称作线性渲染，LinearGradient的作用是实现某一区域内颜色的线性渐变效果，看源码你就知道他是shader的子类。
+它有两个构造函数：
+public LinearGradient(float x0, float y0, float x1, float y1, int color0, int color1, Shader.TileMode tile)
+public LinearGradient (float x0, float y0, float x1, float y1, int[] colors, float[] positions, Shader.TileMode tile);
+
+参数说明：
+
+参数x0：表示渐变的起始点x坐标；
+参数y0：表示渐变的起始点y坐标；
+参数x1：表示渐变的终点x坐标；
+参数y1：表示渐变的终点y坐标；
+参数colors：表示渐变的颜色数组；
+参数positions：用来指定颜色数组的相对位置；
+参数color0：表示渐变开始颜色；
+参数color1：表示渐变结束颜色；
+参数tile：表示平铺方式
+
+Shader.TileMode有3种参数可供选择，分别为CLAMP、REPEAT和MIRROR：
+CLAMP的作用：是如果渲染器超出原始边界范围，则会复制边缘颜色对超出范围的区域进行着色
+REPEAT的作用是：在横向和纵向上以平铺的形式重复渲染位图
+MIRROR的作用是：在横向和纵向上以镜像的方式重复渲染位图
+
+
+先实现文字效果的水平渐变：
+Shader shader_horizontal= new LinearGradient(btWidth/4, 0, btWidth, 0, Color.RED, Color.GREEN, Shader.TileMode.CLAMP);
+tv_text_horizontal.getPaint().setShader(shader_horizontal);
+再实现文字的垂直渐变效果：
+Shader shader_vertical=new LinearGradient(0, btHeight/4, 0, btHeight, Color.RED, Color.GREEN, Shader.TileMode.CLAMP);
+tv_text_vertical.getPaint().setShader(shader_vertical);

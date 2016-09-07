@@ -1,6 +1,7 @@
 package com.hsf.tts;
 
 import android.os.Message;
+import android.os.SystemClock;
 import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -78,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
                     }
 
                 },"com.iflytek.tts");
+
             }
 
             @Override
@@ -150,6 +152,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initSpeech() {
+        if(mSpeech!=null){
+            mSpeech.stop();
+            mSpeech.shutdown();
+            mSpeech = null;
+        }
 
         mSpeech = new TextToSpeech(MainActivity.this, new TextToSpeech.OnInitListener() {
             @Override
@@ -170,15 +177,25 @@ public class MainActivity extends AppCompatActivity {
         },"com.iflytek.tts");
     }
 
-    public void speak(String msg){
+    public void speak(final String msg){
 
-        mSpeech.speak(msg, TextToSpeech.QUEUE_FLUSH,
-                null);
+
+        new Thread(){
+            @Override
+            public synchronized void run() {
+                super.run();
+                initSpeech();
+                SystemClock.sleep(1000);
+                mSpeech.speak(msg, TextToSpeech.QUEUE_FLUSH,
+                    null);
+            }
+        }.start();
 
     }
 
 
     public void play(View view){
+
         String speak = et.getEditableText().toString().trim();
         if(!TextUtils.isEmpty(speak)){
             speak(speak);
