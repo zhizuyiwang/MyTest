@@ -24,6 +24,7 @@
       <module fileurl="file://$PROJECT_DIR$/自定义对话框/自定义对话框.iml" filepath="$PROJECT_DIR$/自定义对话框/自定义对话框.iml" />
       <module fileurl="file://$PROJECT_DIR$/自定义控件/自定义控件.iml" filepath="$PROJECT_DIR$/自定义控件/自定义控件.iml" />
       <module fileurl="file://$PROJECT_DIR$/自定义柱状图饼图/自定义柱状图饼图.iml" filepath="$PROJECT_DIR$/自定义柱状图饼图/自定义柱状图饼图.iml" />
+      <module fileurl="file://$PROJECT_DIR$/贝塞尔曲线的应用/贝塞尔曲线的应用.iml" filepath="$PROJECT_DIR$/贝塞尔曲线的应用/贝塞尔曲线的应用.iml" />
       <module fileurl="file://$PROJECT_DIR$/辅助音乐开发的fragment/辅助音乐开发的fragment.iml" filepath="$PROJECT_DIR$/辅助音乐开发的fragment/辅助音乐开发的fragment.iml" />
     </modules>
   </component>

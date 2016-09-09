@@ -60,11 +60,22 @@ public class SongTextView extends TextView {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        //setMeasuredDimension(setTextView);
+        setMeasuredDimension(setTextViewWidth(widthMeasureSpec),setTextViewHeight(heightMeasureSpec));
+    }
+
+    private int setTextViewHeight(int heightMeasureSpec) {
+        int result = 0;
+        return result;
+    }
+
+    private int setTextViewWidth(int widthMeasureSpec) {
+        int result = 0;
+        return result;
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
     }
+
 }
