@@ -20,7 +20,12 @@
             <option value="$PROJECT_DIR$/androidping" />
             <option value="$PROJECT_DIR$/android实现tab效果的大总结" />
             <option value="$PROJECT_DIR$/android绘图之canvas" />
+            <option value="$PROJECT_DIR$/evenbus的使用" />
             <option value="$PROJECT_DIR$/library" />
+            <option value="$PROJECT_DIR$/listview的联动及与scrollview一起使用" />
+            <option value="$PROJECT_DIR$/recyclerview的具体用法" />
+            <option value="$PROJECT_DIR$/toolbar的使用" />
+            <option value="$PROJECT_DIR$/实现侧滑菜单的效果大总结" />
             <option value="$PROJECT_DIR$/实现字体颜色渐变和高亮效果" />
             <option value="$PROJECT_DIR$/属性动画大全" />
             <option value="$PROJECT_DIR$/带进度的圆形进度条" />
@@ -30,38 +35,12 @@
             <option value="$PROJECT_DIR$/自定义对话框" />
             <option value="$PROJECT_DIR$/自定义控件" />
             <option value="$PROJECT_DIR$/自定义柱状图饼图" />
+            <option value="$PROJECT_DIR$/获取手机位置定位" />
             <option value="$PROJECT_DIR$/贝塞尔曲线的应用" />
             <option value="$PROJECT_DIR$/辅助音乐开发的fragment" />
           </set>
         </option>
-        <option name="myModules">
-          <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/AndroidTest" />
-            <option value="$PROJECT_DIR$/MyAlarm" />
-            <option value="$PROJECT_DIR$/MyMusic" />
-            <option value="$PROJECT_DIR$/MyMusicPlayer" />
-            <option value="$PROJECT_DIR$/MyPayAnimation" />
-            <option value="$PROJECT_DIR$/PullToRefresh" />
-            <option value="$PROJECT_DIR$/TTS的使用" />
-            <option value="$PROJECT_DIR$/Titanic" />
-            <option value="$PROJECT_DIR$/androidping" />
-            <option value="$PROJECT_DIR$/android实现tab效果的大总结" />
-            <option value="$PROJECT_DIR$/android绘图之canvas" />
-            <option value="$PROJECT_DIR$/library" />
-            <option value="$PROJECT_DIR$/实现字体颜色渐变和高亮效果" />
-            <option value="$PROJECT_DIR$/属性动画大全" />
-            <option value="$PROJECT_DIR$/带进度的圆形进度条" />
-            <option value="$PROJECT_DIR$/点击屏幕出现水波纹" />
-            <option value="$PROJECT_DIR$/科大讯飞语音识别" />
-            <option value="$PROJECT_DIR$/自定义下拉刷新大集合" />
-            <option value="$PROJECT_DIR$/自定义对话框" />
-            <option value="$PROJECT_DIR$/自定义控件" />
-            <option value="$PROJECT_DIR$/自定义柱状图饼图" />
-            <option value="$PROJECT_DIR$/贝塞尔曲线的应用" />
-            <option value="$PROJECT_DIR$/辅助音乐开发的fragment" />
-          </set>
-        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
   </component>

@@ -1,0 +1,156 @@
+Toolbar 是在 Android 5.0 开始推出的一个 Material Design 风格的导航控件 ，Google 非常推荐大家使用 Toolbar 来作为Android客户端的导航栏，
+以此来取代之前的 Actionbar 。与 Actionbar 相比，Toolbar 明显要灵活的多。它不像 Actionbar 一样，一定要固定在Activity的顶部，
+而是可以放到界面的任意位置。除此之外，在设计 Toolbar 的时候，Google也留给了开发者很多可定制修改的余地，这些可定制修改的属性在API文档中都有详细介绍，
+
+如：
+设置导航栏图标；
+设置App的logo；
+支持设置标题和子标题；
+支持添加一个或多个的自定义控件；
+支持Action Menu；
+
+使用toolBar注意的问题：
+1、我们在使用 Toolbar 时候需要先隐藏掉系统原先的导航栏，网上很多人都说给Activity设置一个NoActionBar的Theme。但个人觉得有点小题大做了，
+所以这里我直接在BaseActivity中调用 supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
+去掉了默认的导航栏（注意，我的BaseActivity是继承了AppCompatActivity的，
+如果是继承Activity就应该调用requestWindowFeature(Window.FEATURE_NO_TITLE)）；
+
+2、如果你想修改标题和子标题的字体大小、颜色等，可以调用setTitleTextColor、setTitleTextAppearance、setSubtitleTextColor、
+   setSubtitleTextAppearance 这些API；
+
+3、自定义的View位于 title、subtitle 和 actionmenu 之间，这意味着，如果 title 和 subtitle 都在，
+   且 actionmenu选项 太多的时候，留给自定义View的空间就越小；
+
+4、导航图标 和 app logo 的区别在哪？如果你只设置 导航图标（ or app logo） 和 title、subtitle，会发现
+  app logo 和 title、subtitle 的间距比较小，看起来不如 导航图标 与 它们两搭配美观；
+
+5、Toolbar 和其他控件一样，很多属性设置方法既支持代码设置，也支持在xml中设置
+
+6、注意，一般导航图标和app logo只用其中一个，再加上主标题
+
+7、APP菜单弹出挡住了标题栏，将该菜单的样式和其他APP一样，在标题栏下面弹出。
+    首先要说明一下，toolbar菜单默认样式的父类为Widget.AppCompat.Light.PopupMenu.Overflow，
+    那么要更改toolbar中菜单的弹出的样式，就必须继承这个父类的样式。
+
+<!-- Base application theme. -->
+<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <!-- toolbar（actionbar）颜色 -->
+    <item name="colorPrimary">#4876FF</item>
+    <!-- 状态栏颜色 -->
+    <item name="colorPrimaryDark">#3A5FCD</item>
+    <!-- 窗口的背景颜色 -->
+    <item name="android:windowBackground">@android:color/white</item>
+    <item name="actionOverflowMenuStyle">@style/LYJMenuStyle</item>
+</style>
+
+<style name="LYJMenuStyle" parent="@style/Widget.AppCompat.Light.PopupMenu.Overflow">
+    <item name="overlapAnchor">false</item>
+</style>
+
+设置这一个属性那么其弹出的样式就与其他APP一样不会覆盖标题栏。
+还有其他属性这里简要说明一下：
+①?attr/colorPrimary：弹出菜单背景色为标题栏的背景色
+②0dip：弹出菜单与标题栏的垂直间距
+
+介绍一下菜单里面重要的几个属性：
+app:showAsAction有三个值：
+always：总是显示在界面上
+never：不显示在界面上，只让出现在右边的三个点中
+ifRoom：如果有位置才显示，不然就出现在右边的三个点中
+可以用 | 同时使用两个上面的值。
+系统也为菜单提供了默认的分享菜单与查询菜单，代码如下：
+app:actionViewClass="android.support.v7.widget.SearchView"
+app:actionProviderClass="android.support.v7.widget.ShareActionProvider"
+
+从名字想必不需要过多解释，最后一个就是显示的优先级，也就是显示的顺序，谁在最前面，谁在后面：
+android:orderInCategory数值越小，显示靠前，且优先级最大。
+========================================================================================================
+
+使用toolbar也出现一些坑：
+
+坑一：xml布局文件中，Toolbar属性设置无效：
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_0176da"
+        android:logo="@mipmap/ic_launcher"
+        android:navigationIcon="@mipmap/ic_drawer_home"
+        android:subtitle="456"
+        android:title="123">
+
+        <!--自定义控件-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clock" />
+    </android.support.v7.widget.Toolbar>
+</LinearLayout>
+
+除了设置背景色和TextView有效外，说好的 logo、navigationIcon、subtitle、title 都跑哪去了？在编译器没报错又不见效果的情况下，
+参考了其他开发者的用法后找到了以下的解决方案，就是在根布局中加入自定义属性的命名空间
+xmlns:toolbar="http://schemas.android.com/apk/res-auto"(这里的toolbar可以换成你想要其他命名）
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:toolbar="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_0176da"
+        toolbar:navigationIcon="@mipmap/ic_drawer_home"
+        toolbar:logo="@mipmap/ic_launcher"
+        toolbar:subtitle="456"
+        toolbar:title="123">
+
+        <!--自定义控件-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clock" />
+    </android.support.v7.widget.Toolbar>
+</LinearLayout>
+
+到此即可解决 xml 中属性设置失效的问题，为什么会出现这种问题呢？我猜测是因为这个控件是兼容版的控件，
+用 android:xxx 设置无效是的这些属性是在兼容包中，不在默认的Android SDK中，所以我们需要额外的引入
+
+坑二：Action Menu Item 的文字颜色设置无效：
+
+有需求要改变一下item文字颜色，应该怎么破？我按照网上比较普遍的解决方案，做了如下两步的修改操作：
+在styles.xml中自定义一个Theme，并设置 actionMenuTextColor 属性（注意：不是 android:actionMenuTextColor ）
+<style name="Theme.ToolBar.Base" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="actionMenuTextColor">@color/color_red</item>
+</style
+
+在布局文件的Toolbar中设置popupTheme（注意：是toolbar:xxx，不是android:xxx）
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_0176da"
+        toolbar:popupTheme="@style/Theme.ToolBar.Base">
+
+        <!--自定义控件-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clock" />
+    </android.support.v7.widget.Toolbar>
+运行之后，文字的颜色的并没有发生任何改变。说好的改变颜色呢.....找来找去，最后在 StackOverflow 找到一个还不错的解决方案，
+就是把上面的的 actionMenuTextColor 属性换成 android:textColorPrimary 即可解决.
+如果你想要修改 ActionMenu Item 的文字大小，也可以在theme中设置加上如下设置
+
+<item name="android:textSize">20sp</item>
+
+

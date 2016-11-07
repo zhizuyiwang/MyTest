@@ -8,4 +8,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="CustomDialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!--这里需要注意的是使用colorAccent兼容低版本，而不是Android:colorAccent。-->
+        <item name="colorAccent">#ffE91E63</item>
+    </style>
+
 </resources>

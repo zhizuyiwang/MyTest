@@ -1,0 +1,57 @@
+介绍 RecyclerView 和 ListView 的使用对比，文章主要包括以下几点的内容：
+
+1、RecyclerView 和 ListView 布局效果的对比
+2、RecyclerView 和 ListView 一些常用的功能 和 API 的对比
+3、RecyclerView 和 ListView 在 Android L 引入嵌套滚动机制之后的对比
+
+分析：
+1、首先来看第一点的差别：
+Android 默认提供的 RecyclerView 就能支持 线性布局、网格布局、瀑布流布局 三种（这里我们暂且不提代码细节，后文再说），
+而且同时还能够控制横向还是纵向滚动。怎样，从效果上足以碾压 ListView 有木有。
+
+横向滚动的ListView开源控件是不是可以不用再找了？对，你没看错！
+瀑布流效果的开源控件是不是可以不用再找了？对，你没看错！
+连横向滚动的GridView都不用找了！对，你没看错！
+到此，展示效果上的差距一目了然。
+
+2、基础使用
+  ListView 的基础使用大家再熟悉不过，其使用的关键点主要如下：
+  继承重写 BaseAdapter 类
+  自定义 ViewHolder 和 convertView 一起完成复用优化工作
+
+  RecyclerView 基础使用关键点同样有两点：
+  继承重写 RecyclerView.Adapter 和 RecyclerView.ViewHolder
+  设置布局管理器，控制布局效果
+
+从基础使用上看，我们明显可以看出，RecyclerView 相比 ListView 在基础使用上的区别主要有如下几点：
+
+ViewHolder 的编写规范化了
+RecyclerView 复用 Item 的工作 Google 全帮你搞定，不再需要像 ListView 那样自己调用 setTag
+RecyclerView 需要多出一步 LayoutManager 的设置工作
+
+
+3、recyclerView的布局效果
+RecyclerView 能够支持各种各样的布局效果，这是 ListView 所不具有的功能，那么这个功能如何实现的呢？其核心关键在于
+RecyclerView.LayoutManager 类中。从前面的基础使用可以看到，RecyclerView 在使用过程中要比 ListView 多一个
+setLayoutManager 步骤，这个 LayoutManager 就是用于控制我们 RecyclerView 最终的展示效果的。
+
+而 LayoutManager 只是一个抽象类而已，系统已经为我们提供了三个相关的实现类 LinearLayoutManager（线性布局效果）、
+GridLayoutManager（网格布局效果）、StaggeredGridLayoutManager（瀑布流布局效果）。如果你想用 RecyclerView 来实现
+自己 YY 出来的一种效果，则应该去继承实现自己的 LayoutManager，并重写相应的方法，而不应该想着去改写 RecyclerView。
+
+
+关于 LayoutManager 的使用有下面一些常见的 API（有些在 LayoutManager 实现的子类中）
+
+    canScrollHorizontally();//能否横向滚动
+    canScrollVertically();//能否纵向滚动
+    scrollToPosition(int position);//滚动到指定位置
+
+    setOrientation(int orientation);//设置滚动的方向
+    getOrientation();//获取滚动方向
+
+    findViewByPosition(int position);//获取指定位置的Item View
+    findFirstCompletelyVisibleItemPosition();//获取第一个完全可见的Item位置
+    findFirstVisibleItemPosition();//获取第一个可见Item的位置
+    findLastCompletelyVisibleItemPosition();//获取最后一个完全可见的Item位置
+    findLastVisibleItemPosition();//获取最后一个可见Item的位置
+

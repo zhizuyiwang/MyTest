@@ -14,7 +14,12 @@
       <module fileurl="file://$PROJECT_DIR$/androidping/androidping.iml" filepath="$PROJECT_DIR$/androidping/androidping.iml" />
       <module fileurl="file://$PROJECT_DIR$/android实现tab效果的大总结/android实现tab效果的大总结.iml" filepath="$PROJECT_DIR$/android实现tab效果的大总结/android实现tab效果的大总结.iml" />
       <module fileurl="file://$PROJECT_DIR$/android绘图之canvas/android绘图之canvas.iml" filepath="$PROJECT_DIR$/android绘图之canvas/android绘图之canvas.iml" />
+      <module fileurl="file://$PROJECT_DIR$/evenbus的使用/evenbus的使用.iml" filepath="$PROJECT_DIR$/evenbus的使用/evenbus的使用.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/listview的联动及与scrollview一起使用/listview的联动及与scrollview一起使用.iml" filepath="$PROJECT_DIR$/listview的联动及与scrollview一起使用/listview的联动及与scrollview一起使用.iml" />
+      <module fileurl="file://$PROJECT_DIR$/recyclerview的具体用法/recyclerview的具体用法.iml" filepath="$PROJECT_DIR$/recyclerview的具体用法/recyclerview的具体用法.iml" />
+      <module fileurl="file://$PROJECT_DIR$/toolbar的使用/toolbar的使用.iml" filepath="$PROJECT_DIR$/toolbar的使用/toolbar的使用.iml" />
+      <module fileurl="file://$PROJECT_DIR$/实现侧滑菜单的效果大总结/实现侧滑菜单的效果大总结.iml" filepath="$PROJECT_DIR$/实现侧滑菜单的效果大总结/实现侧滑菜单的效果大总结.iml" />
       <module fileurl="file://$PROJECT_DIR$/实现字体颜色渐变和高亮效果/实现字体颜色渐变和高亮效果.iml" filepath="$PROJECT_DIR$/实现字体颜色渐变和高亮效果/实现字体颜色渐变和高亮效果.iml" />
       <module fileurl="file://$PROJECT_DIR$/属性动画大全/属性动画大全.iml" filepath="$PROJECT_DIR$/属性动画大全/属性动画大全.iml" />
       <module fileurl="file://$PROJECT_DIR$/带进度的圆形进度条/带进度的圆形进度条.iml" filepath="$PROJECT_DIR$/带进度的圆形进度条/带进度的圆形进度条.iml" />
@@ -24,6 +29,7 @@
       <module fileurl="file://$PROJECT_DIR$/自定义对话框/自定义对话框.iml" filepath="$PROJECT_DIR$/自定义对话框/自定义对话框.iml" />
       <module fileurl="file://$PROJECT_DIR$/自定义控件/自定义控件.iml" filepath="$PROJECT_DIR$/自定义控件/自定义控件.iml" />
       <module fileurl="file://$PROJECT_DIR$/自定义柱状图饼图/自定义柱状图饼图.iml" filepath="$PROJECT_DIR$/自定义柱状图饼图/自定义柱状图饼图.iml" />
+      <module fileurl="file://$PROJECT_DIR$/获取手机位置定位/获取手机位置定位.iml" filepath="$PROJECT_DIR$/获取手机位置定位/获取手机位置定位.iml" />
       <module fileurl="file://$PROJECT_DIR$/贝塞尔曲线的应用/贝塞尔曲线的应用.iml" filepath="$PROJECT_DIR$/贝塞尔曲线的应用/贝塞尔曲线的应用.iml" />
       <module fileurl="file://$PROJECT_DIR$/辅助音乐开发的fragment/辅助音乐开发的fragment.iml" filepath="$PROJECT_DIR$/辅助音乐开发的fragment/辅助音乐开发的fragment.iml" />
     </modules>

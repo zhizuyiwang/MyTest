@@ -3,9 +3,16 @@ package com.hsf.textlight;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,6 +23,18 @@ public class MainActivity extends AppCompatActivity {
     private LinearGradient mShaper;
     private int mWidth;
     private int mHeight;
+    private ProgressBar pb;
+    private int progress;
+    private Timer timer;
+    private TimerTask task;
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            Log.e("TAG",progress+"");
+            pb.setProgress(progress);
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         tv1 = (TextView) findViewById(R.id.tv1);
         tv2 = (TextView) findViewById(R.id.tv2);
+        pb = (ProgressBar) findViewById(R.id.pb);
         myTv1 = (GradientHorizontalTextView) findViewById(R.id.myTv1);
         myTv2 = (GradientHorizontalTextView) findViewById(R.id.myTv2);
         myTv1.setStyle(true);
@@ -46,6 +66,34 @@ public class MainActivity extends AppCompatActivity {
                 tv2.getPaint().setShader(mShaper1);
             }
         });
+
+        //ProgressBar实现歌词播放效果
+        progress = pb.getProgress();
+        timer = new Timer();
+        task = new TimerTask() {
+            @Override
+            public void run() {
+                progress+=10;
+                if(progress>100){
+                    progress=0;
+                }
+                handler.sendEmptyMessage(100);
+            }
+        };
+
+        timer.schedule(task,1000,300);
+
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(timer!=null && task!=null){
+            timer.cancel();
+            task.cancel();
+        }
+        handler.removeMessages(100);
 
     }
 }

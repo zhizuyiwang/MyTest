@@ -15,6 +15,12 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".AlertDialogActivity">
+        </activity>
+        <activity android:name=".ProgressDialogActivity">
+        </activity>
+        <activity android:name=".DatePickerDialogActivity">
+        </activity>
     </application>
 
 </manifest>

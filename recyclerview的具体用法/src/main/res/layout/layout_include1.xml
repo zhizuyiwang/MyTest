@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="生产数1"
+        android:textColor="@color/color_black"
+        android:textSize="25sp"/>
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="生产数2"
+        android:textColor="@color/color_black"
+        android:textSize="25sp"/>
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="生产数3"
+        android:textColor="@color/color_black"
+        android:textSize="25sp"/>
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="生产数4"
+        android:textColor="@color/color_black"
+        android:textSize="25sp"/>
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="生产数5"
+        android:textColor="@color/color_black"
+        android:textSize="25sp"/>
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="生产数6"
+        android:textColor="@color/color_black"
+        android:textSize="25sp"/>
+
+</LinearLayout>
+

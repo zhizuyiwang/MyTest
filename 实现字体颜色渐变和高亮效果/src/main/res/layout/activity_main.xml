@@ -37,5 +37,19 @@
         android:textSize="25sp">
 
     </com.hsf.textlight.GradientHorizontalTextView>
+    <com.hsf.textlight.SongTextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+    </com.hsf.textlight.SongTextView>
+    <ProgressBar
+        android:id="@+id/pb"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:progressDrawable="@drawable/m_progress_horizontal"
+        android:max="100"
+        android:progress="0"
+        android:indeterminate="false"/>
+
 
 </LinearLayout>
